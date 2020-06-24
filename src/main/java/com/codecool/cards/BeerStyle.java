@@ -10,7 +10,7 @@ public class BeerStyle {
     }
 
     public BeerStyle(String primaryStyle){
-        new BeerStyle(primaryStyle, "Generic");
+        this(primaryStyle, "Generic");
     }
 
     public String getPrimaryStyle() {

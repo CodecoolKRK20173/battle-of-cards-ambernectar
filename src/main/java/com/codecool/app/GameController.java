@@ -6,8 +6,8 @@ import com.codecool.cards.Card;
 public class GameController {
     View view;
 
-    public GameController(View view) {
-        this.view = view;
+    public GameController() {
+        this.view = new View();
     }
 
     void run(){
@@ -15,6 +15,8 @@ public class GameController {
         Card card2 = new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA"));
         Card card3 = new Card("Guiness",22, 820, 72, new BeerStyle("Stout", "Coffee"));
         view.clear();
-
+        view.printCard(card1, 0, 0);
+        view.printCard(card2, 15, 20);
+        view.printCard(card3, 40, 10);
     }
 }

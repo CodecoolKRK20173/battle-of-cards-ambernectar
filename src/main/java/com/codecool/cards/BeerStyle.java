@@ -1,8 +1,8 @@
 package com.codecool.cards;
 
 public class BeerStyle {
-    String primaryStyle;
-    String secondaryStyle;
+    private String primaryStyle;
+    private String secondaryStyle;
 
     public BeerStyle(String primaryStyle, String secondaryStyle) {
         this.primaryStyle = primaryStyle;
@@ -11,5 +11,13 @@ public class BeerStyle {
 
     public BeerStyle(String primaryStyle){
         new BeerStyle(primaryStyle, "Generic");
+    }
+
+    public String getPrimaryStyle() {
+        return primaryStyle;
+    }
+
+    public String getSecondaryStyle() {
+        return secondaryStyle;
     }
 }

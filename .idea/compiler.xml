@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="battle-of-cards-ambernectar" target="1.7" />
+      <module name="battle-of-cards-ambernectar" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

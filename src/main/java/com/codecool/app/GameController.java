@@ -16,7 +16,7 @@ public class GameController {
         Card card3 = new Card("Guiness",22, 820, 72, new BeerStyle("Stout", "Coffee"));
         view.clear();
         view.printCardSimply(card1);
-        view.printCardSimply(card2);
-        view.printCard(card3, 40, 20);
+        view.printCard(card2, 40, 1);
+        view.printCard(card3, 20, 20);
     }
 }

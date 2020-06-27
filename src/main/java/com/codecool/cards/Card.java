@@ -39,8 +39,8 @@ public class Card implements Comparable<Card>{
         this.cardLineList[3] = getCardLineString(getSecondaryStyle());
         this.cardLineList[4] = getCardLineString(getPrimaryStyle());
         this.cardLineList[5] = getCardLineString("IBU: " + getIbu());
-        this.cardLineList[6] = getCardLineString("vol. " + getPercentage());
-        this.cardLineList[7] = getCardLineString("Price: " + getPrice());
+        this.cardLineList[6] = getCardLineString("vol. " + percentageToString());
+        this.cardLineList[7] = getCardLineString("Price: " + priceToString());
 
         // Bottom line
         StringBuilder bottom = new StringBuilder();
@@ -86,6 +86,21 @@ public class Card implements Comparable<Card>{
 
     public int getIbu() {
         return ibu;
+    }
+
+    public String priceToString(){
+        return String.join("",
+                String.valueOf(Math.floorDiv(getPrice(), 100)),
+                          ",",
+                          String.valueOf(Math.floorMod(getPrice(), 100)));
+    }
+
+    public String percentageToString(){
+        return String.join("",
+                String.valueOf(Math.floorDiv(getPercentage(), 10)),
+                ",",
+                String.valueOf(Math.floorMod(getPercentage(), 10)),
+                "%");
     }
 
     public int getPrice() {

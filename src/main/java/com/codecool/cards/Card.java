@@ -1,10 +1,8 @@
 package com.codecool.cards;
 
 import java.lang.Comparable;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card> {
     private final String name;
     private final Integer ibu;
     private final int price;
@@ -29,29 +27,6 @@ public class Card implements Comparable<Card>{
         this.style = style;
         createCardLines();
     }
-
-//    private String getValue (String criteriaName) {
-//        criteriaName.toLowerCase();
-//        if (criteriaName == "name") {
-//            return getName();
-//        } else {
-//            // TODO throw some exception ?
-//        }
-//    }
-
-    private int getValue (String criteriaName) {
-        criteriaName.toLowerCase();
-        if (criteriaName == "ibu") {
-            return ibu;
-        } else if (criteriaName == "price") {
-            return price;
-        } else if (criteriaName == "percentage") {
-            return percentage;
-        }
-        //in case name not found
-        return 0;
-    }
-
 
     private void createCardLines() {
         this.cardLineList = new String[9];

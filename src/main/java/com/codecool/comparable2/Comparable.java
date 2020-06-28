@@ -1,4 +1,4 @@
-package com.codecool.comparable;
+package com.codecool.comparable2;
 
 import com.codecool.cards.Card;
 

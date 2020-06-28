@@ -1,4 +1,4 @@
-package com.codecool.comparable;
+package com.codecool.comparable2;
 
 public class ComparatorString {
 }

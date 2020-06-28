@@ -106,10 +106,10 @@ public class Card implements Comparable<Card>{
     public int compareTo(Card opponentCard) {
         if (ibu == opponentCard.getIbu()) {
             return 0;
-        } else if (ibu > getIbu()) {
+        } else if (ibu > opponentCard.getIbu()) {
             return 1;
         }
-        return 0;
+        return -1;
     }
 
     public String getName() {

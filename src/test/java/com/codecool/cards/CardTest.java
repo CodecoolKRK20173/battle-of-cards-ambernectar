@@ -11,10 +11,10 @@ public class CardTest extends TestCase {
         BeerStyle testStyle = new BeerStyle("TestStyle");
         Card testCard = new Card("TestBeer", 100, 200, 200, testStyle);
         Card opponentCard = new Card("OpponentCard", 120, 200, 200, testStyle);
-        assertEquals(1, testCard.compareTo(opponentCard));
+        assertEquals( -1, testCard.compareTo(opponentCard));
     }
 
-    public  void testCompareToEqual() {
+    public void testCompareToEqual() {
         BeerStyle testStyle = new BeerStyle("TestStyle");
         Card testCard = new Card("TestBeer", 100, 200, 200, testStyle);
         Card opponentCard = new Card("OpponentCard", 100, 200, 200, testStyle);
@@ -25,7 +25,7 @@ public class CardTest extends TestCase {
         BeerStyle testStyle = new BeerStyle("TestStyle");
         Card testCard = new Card("TestBeer", 100, 200, 200, testStyle);
         Card opponentCard = new Card("OpponentCard", 80, 200, 200, testStyle);
-        assertEquals(-1, testCard.compareTo(opponentCard));
+        assertEquals(1, testCard.compareTo(opponentCard));
     }
 
     public void testTestGetName() {

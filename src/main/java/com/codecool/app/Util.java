@@ -1,6 +1,7 @@
 package com.codecool.app;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Util {
@@ -10,15 +11,16 @@ public class Util {
         this.view = new View();
     }
 
-    public int switchChoice (List<String> optionsList) {
+    public int getChoice (List<String> optionsList, Optional<String> message) {
         boolean correctOption = false;
         int choice = 999;
-        String message = "Chose your option";
+        String messageString = message.orElse("Choose your option");
+
         Scanner input = new Scanner(System.in);
 
         while (correctOption = false) {
             view.clear();
-            view.printOptions(optionsList, message);
+            view.printOptions(optionsList, messageString);
             String StringChoice = input.nextLine();
             choice = validateAsInt(StringChoice);
             if (choice <= optionsList.size()) {

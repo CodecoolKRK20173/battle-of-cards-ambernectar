@@ -7,13 +7,11 @@ import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameController {
     View view;
+    Util util;
     List<Hand> players;
     int currentPlayer;
     Scanner scan;
@@ -63,7 +61,7 @@ public class GameController {
         return winner;
     }
 
-private void iteratePlayers() {
+    private void iteratePlayers() {
         if (currentPlayer < players.size() - 1){
             currentPlayer++;
         }else currentPlayer = 0;
@@ -72,7 +70,19 @@ private void iteratePlayers() {
 
     private void setupGame(){
         view.printMessage("MENU:");
-        view.printMessage("Chose option");
+        List<String> optionsList = new ArrayList<String>();
+        optionsList.add("Play 2 players game.");
+        optionsList.add("Play 3 players game.");
+        optionsList.add("Play 4 players game.");
+        int playerChoice = util.getChoice(optionsList, Optional.empty());
+
+        if (playerChoice == 0) {
+//            setupGame2Players();
+        }   else if (playerChoice == 1) {
+            setupGame3Players();
+        } else if (playerChoice == 2) {
+//            setupGame4Players();
+        }
 
     }
 

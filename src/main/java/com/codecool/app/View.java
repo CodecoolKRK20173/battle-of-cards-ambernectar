@@ -2,7 +2,20 @@ package com.codecool.app;
 
 import com.codecool.cards.Card;
 
+import java.util.List;
+
 public class View {
+
+    void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printOptions(List<String> optionsList, String message) {
+        printMessage(message);
+        for (int index = 0; index < optionsList.size(); index++) {
+            printMessage("(" + index + ") " + optionsList.get(index));
+        }
+    }
 
     void printCardSimply(Card card){
         System.out.println(card.getName());

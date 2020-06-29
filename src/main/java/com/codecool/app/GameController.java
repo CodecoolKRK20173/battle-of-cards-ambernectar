@@ -63,13 +63,23 @@ public class GameController {
         return winner;
     }
 
-    private void iteratePlayers() {
+private void iteratePlayers() {
         if (currentPlayer < players.size() - 1){
             currentPlayer++;
         }else currentPlayer = 0;
     }
 
+
     private void setupGame(){
+        view.printMessage("MENU:");
+        view.printMessage("Chose option");
+
+    }
+
+
+
+
+    private void setupGame3Players(){
         view.clear();
 
         players.add(new Hand("Player1"));

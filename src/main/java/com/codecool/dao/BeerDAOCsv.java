@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class BeerDAOCsv implements BeerDAO {
     @Override
     public Hand loadDatabase(String filename) throws FileNotFoundException {
-        Hand loadedCards = new Hand();
+        Hand loadedCards = new Hand("Deck");
         Scanner scanner = new Scanner(new File(filename));
 //        scanner.useDelimiter(",");
         while(scanner.hasNext()){

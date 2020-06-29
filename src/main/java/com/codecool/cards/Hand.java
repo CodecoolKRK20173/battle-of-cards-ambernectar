@@ -7,9 +7,9 @@ public class Hand {
     private List<Card> cardList;
     private String ownerName;
 
-    public Hand () {
-//        this.cardList = cardlist;
-//        this.ownerName = ownerName;
+    public Hand (String ownerName) {
+        this.cardList = new ArrayList<Card>();
+        this.ownerName = ownerName;
     }
 
     public String getOwnerName() {

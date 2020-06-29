@@ -12,8 +12,12 @@ public class View {
 
     public void printOptions(List<String> optionsList, String message) {
         printMessage(message);
-        for (int index = 0; index < optionsList.size(); index++) {
-            printMessage("(" + index + ") " + optionsList.get(index));
+        try {
+            for (int index = 0; index < optionsList.size(); index++) {
+                printMessage("(" + index + ") " + optionsList.get(index));
+            }
+        }catch (IndexOutOfBoundsException e) {
+//            TODO
         }
     }
 

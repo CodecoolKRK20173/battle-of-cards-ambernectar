@@ -18,13 +18,14 @@ public class GameController {
 
     public GameController() {
         this.view = new View();
+        this.util = new Util();
         this.players = new ArrayList<>();
         this.currentPlayer = 0;
         scan = new Scanner(System.in);
     }
 
     void run(){
-        setupGame();
+        setupGame2();
         while (!isGameOver()){
             view.clear();
             view.printCard(getCurrentCard(), 0, 1);
@@ -68,28 +69,28 @@ public class GameController {
     }
 
 
-    private void setupGame(){
+    private void setupGame2(){
         view.printMessage("MENU:");
         List<String> optionsList = new ArrayList<String>();
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
-        int playerChoice = util.getChoice(optionsList, Optional.empty());
+//        int playerChoice = util.getChoice(optionsList, "Chose game mode");
+        int playerChoice = 1;
 
         if (playerChoice == 0) {
-//            setupGame2Players();
+            setupGame3Players();
         }   else if (playerChoice == 1) {
             setupGame3Players();
         } else if (playerChoice == 2) {
-//            setupGame4Players();
+            setupGame3Players();
         }
-
     }
 
 
 
-
     private void setupGame3Players(){
+//    private void setupGame(){
         view.clear();
 
         players.add(new Hand("Player1"));

@@ -11,17 +11,17 @@ public class Util {
         this.view = new View();
     }
 
-    public int getChoice (List<String> optionsList, Optional<String> message) {
+    public int getChoice (List<String> optionsList, String message) {
         boolean correctOption = false;
         int choice = 999;
-        String messageString = message.orElse("Choose your option");
 
         Scanner input = new Scanner(System.in);
 
         while (correctOption = false) {
             view.clear();
-            view.printOptions(optionsList, messageString);
+            view.printOptions(optionsList, message);
             String StringChoice = input.nextLine();
+            choice = 1;
             choice = validateAsInt(StringChoice);
             if (choice <= optionsList.size()) {
                 correctOption = true;

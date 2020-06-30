@@ -17,7 +17,7 @@ public class LocalUtil {
 
         Scanner input = new Scanner(System.in);
 
-        while (correctOption = false) {
+        while (correctOption == false) {
             view.clear();
             view.printOptions(optionsList, message);
             String StringChoice = input.nextLine();

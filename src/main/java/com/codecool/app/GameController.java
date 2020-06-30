@@ -7,26 +7,25 @@ import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameController {
     View view;
+    Util util;
     List<Hand> players;
     int currentPlayer;
     Scanner scan;
 
     public GameController() {
         this.view = new View();
+        this.util = new Util();
         this.players = new ArrayList<>();
         this.currentPlayer = 0;
         scan = new Scanner(System.in);
     }
 
     void run(){
-        setupGame();
+        setupGame2();
         while (!isGameOver()){
             view.clear();
             view.printCard(getCurrentCard(), 0, 1);
@@ -69,7 +68,29 @@ public class GameController {
         }else currentPlayer = 0;
     }
 
-    private void setupGame(){
+
+    private void setupGame2(){
+        view.printMessage("MENU:");
+        List<String> optionsList = new ArrayList<String>();
+        optionsList.add("Play 2 players game.");
+        optionsList.add("Play 3 players game.");
+        optionsList.add("Play 4 players game.");
+//        int playerChoice = util.getChoice(optionsList, "Chose game mode");
+        int playerChoice = 1;
+
+        if (playerChoice == 0) {
+            setupGame3Players();
+        }   else if (playerChoice == 1) {
+            setupGame3Players();
+        } else if (playerChoice == 2) {
+            setupGame3Players();
+        }
+    }
+
+
+
+    private void setupGame3Players(){
+//    private void setupGame(){
         view.clear();
 
         players.add(new Hand("Player1"));

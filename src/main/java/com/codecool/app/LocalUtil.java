@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class Util {
+public class LocalUtil {
     View view;
 
-    public Util() {
+    public LocalUtil() {
         this.view = new View();
     }
 
@@ -22,7 +22,7 @@ public class Util {
             view.printOptions(optionsList, message);
             String StringChoice = input.nextLine();
             choice = 1;
-            choice = validateAsInt(StringChoice);
+//            choice = validateAsInt(StringChoice);
             if (choice <= optionsList.size()) {
                 correctOption = true;
             }

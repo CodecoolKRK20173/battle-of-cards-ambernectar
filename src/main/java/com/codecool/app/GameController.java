@@ -11,14 +11,14 @@ import java.util.*;
 
 public class GameController {
     View view;
-    Util util;
+    LocalUtil util;
     List<Hand> players;
     int currentPlayer;
     Scanner scan;
 
     public GameController() {
         this.view = new View();
-        this.util = new Util();
+        this.util = new LocalUtil();
         this.players = new ArrayList<>();
         this.currentPlayer = 0;
         scan = new Scanner(System.in);
@@ -75,8 +75,8 @@ public class GameController {
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
-//        int playerChoice = util.getChoice(optionsList, "Chose game mode");
-        int playerChoice = 1;
+        int playerChoice = util.getChoice(optionsList, "Chose game mode");
+//        int playerChoice = 1;
 
         if (playerChoice == 0) {
             setupGame3Players();

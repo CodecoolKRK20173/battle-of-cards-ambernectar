@@ -30,7 +30,7 @@ public class GameController {
             view.clear();
             view.printCard(getCurrentCard(), 0, 1);
             int winner = playRound(scan.nextLine());
-            view.printLine("Winner is " + winner);
+            moveCards(winner);
             scan.nextLine();
             iteratePlayers();
         }
@@ -121,5 +121,16 @@ public class GameController {
 
     private Card getCurrentCard(){
         return players.get(currentPlayer).getCardList().get(0);
+    }
+
+    private void moveCards(int winner) {
+        List<Card> tempCardList = new ArrayList<>();
+        for (Hand player : players) {
+            tempCardList.add(player.getCardList().get(0));
+            player.getCardList().remove(0);
+        }
+        for (Card card : tempCardList) {
+            players.get(winner).getCardList().add(card);
+        }
     }
 }

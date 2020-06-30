@@ -2,7 +2,7 @@ package com.codecool.dao;
 
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
-import com.codecool.cards.Hand;
+import com.codecool.player.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class BeerDAOCsv implements BeerDAO {
     @Override
-    public Hand loadDatabase(String filename) throws FileNotFoundException {
-        Hand loadedCards = new Hand("Deck");
+    public Player loadDatabase(String filename) throws FileNotFoundException {
+        Player loadedCards = new Player("Deck");
         Scanner scanner = new Scanner(new File(filename));
 //        scanner.useDelimiter(",");
         while(scanner.hasNext()){

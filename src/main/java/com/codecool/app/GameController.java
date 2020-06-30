@@ -2,7 +2,7 @@ package com.codecool.app;
 
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
-import com.codecool.cards.Hand;
+import com.codecool.player.Player;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
@@ -12,7 +12,7 @@ import java.util.*;
 public class GameController {
     View view;
     Util util;
-    List<Hand> players;
+    List<Player> players;
     int currentPlayer;
     Scanner scan;
 
@@ -93,9 +93,9 @@ public class GameController {
 //    private void setupGame(){
         view.clear();
 
-        players.add(new Hand("Player1"));
-        players.add(new Hand("Player2"));
-        players.add(new Hand("Player3"));
+        players.add(new Player("Player1"));
+        players.add(new Player("Player2"));
+        players.add(new Player("Player3"));
 
         players.get(0).addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")));
         players.get(1).addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")));
@@ -111,7 +111,7 @@ public class GameController {
     }
 
     private boolean isGameOver(){
-        for (Hand player : players) {
+        for (Player player : players) {
             if (player.getCardList().size() == 0){
                 return true;
             }
@@ -125,7 +125,7 @@ public class GameController {
 
     private void moveCards(int winner) {
         List<Card> tempCardList = new ArrayList<>();
-        for (Hand player : players) {
+        for (Player player : players) {
             tempCardList.add(player.getCardList().get(0));
             player.getCardList().remove(0);
         }

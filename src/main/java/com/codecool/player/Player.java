@@ -1,13 +1,15 @@
-package com.codecool.cards;
+package com.codecool.player;
+
+import com.codecool.cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hand {
+public class Player {
     private List<Card> cardList;
     private String ownerName;
 
-    public Hand (String ownerName) {
+    public Player(String ownerName) {
         this.cardList = new ArrayList<Card>();
         this.ownerName = ownerName;
     }

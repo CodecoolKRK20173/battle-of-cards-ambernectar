@@ -1,12 +1,12 @@
 package com.codecool.dao;
 
 import com.codecool.cards.Card;
-import com.codecool.cards.Hand;
+import com.codecool.player.Player;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface BeerDAO {
-    public Hand loadDatabase(String filename) throws FileNotFoundException;
+    public Player loadDatabase(String filename) throws FileNotFoundException;
     public void SaveDatabase(List<Card> cardList);
 }

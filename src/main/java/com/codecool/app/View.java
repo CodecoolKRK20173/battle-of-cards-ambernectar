@@ -1,7 +1,6 @@
 package com.codecool.app;
 
 import com.codecool.cards.Card;
-import com.codecool.cards.Hand;
 
 import java.util.List;
 
@@ -45,9 +44,4 @@ public class View {
 
     void printLine(String text){ System.out.println(text); }
 
-    void displayScreen(Hand currentPlayer){
-        clear();
-        printLine("   " + currentPlayer.getOwnerName());
-        printCard(currentPlayer.getCardList().get(0), 0, 1);
-    }
 }

@@ -21,7 +21,7 @@ public class GameController {
     }
 
     void run(){
-        setupGame2();
+        setupGame();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
             players.playRound(scan.nextLine());
@@ -30,7 +30,7 @@ public class GameController {
         scan.nextLine();
     }
 
-    private void setupGame2(){
+    private void setupGame(){
         view.printMessage("MENU:");
         List<String> optionsList = new ArrayList<String>();
         optionsList.add("Play 2 players game.");
@@ -48,6 +48,27 @@ public class GameController {
         }
     }
 
+    private void setupGame2Players(){
+        view.clear();
+
+        players.addPlayer(new Player("Player1"));
+        players.addPlayer(new Player("Player2"));
+
+        List<Card> allCards = new ArrayList<Card>();
+
+
+        players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
+        players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
+        players.addCard(new Card("Trzecia Pomoc",13, 500, 43, new BeerStyle("Lager")), 2);
+
+        players.addCard(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")), 0);
+        players.addCard(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")), 1);
+        players.addCard(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")), 2);
+
+        players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
+        players.addCard(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")), 1);
+
+    }
 
 
     private void setupGame3Players(){

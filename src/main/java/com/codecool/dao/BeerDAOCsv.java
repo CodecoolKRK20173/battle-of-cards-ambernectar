@@ -6,13 +6,14 @@ import com.codecool.player.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BeerDAOCsv implements BeerDAO {
     @Override
-    public Player loadDatabase(String filename) throws FileNotFoundException {
-        Player loadedCards = new Player("Deck");
+    public List<Card> loadDatabase(String filename) throws FileNotFoundException {
+        List<Card> loadedCards = new ArrayList<Card>();
         Scanner scanner = new Scanner(new File(filename));
 //        scanner.useDelimiter(",");
         while(scanner.hasNext()){
@@ -28,7 +29,7 @@ public class BeerDAOCsv implements BeerDAO {
             } else {
                 style = new BeerStyle(row[5], row[6]);
             }
-            loadedCards.addCard(new Card(name, ibu, price, percentage, style));
+            loadedCards.add(new Card(name, ibu, price, percentage, style));
         }
         scanner.close();
         return loadedCards;

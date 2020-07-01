@@ -7,6 +7,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface BeerDAO {
-    public Player loadDatabase(String filename) throws FileNotFoundException;
+    public List<Card> loadDatabase(String filename) throws FileNotFoundException;
     public void SaveDatabase(List<Card> cardList);
 }

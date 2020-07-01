@@ -1,6 +1,8 @@
 package com.codecool.app;
 
 import com.codecool.cards.Card;
+import com.codecool.player.Player;
+import com.codecool.player.Players;
 
 import java.util.List;
 
@@ -38,10 +40,22 @@ public class View {
         }
         System.out.println();
     }
+
     void clear(){
         System.out.print("\033[H\033[2J");
     }
 
     void printLine(String text){ System.out.println(text); }
 
+    void displayGameScreen(Players players){
+        clear();
+        printLine("Current player: " + players.getCurrentPlayerName() + "\n");
+        printCard(players.getCurrentCard(), 4, 3);
+        printLine("a: IBU, s: Price, d: Percentage");
+        for (Player player : players.getPlayersList()) {
+            System.out.print(player.getOwnerName() + ": " +
+                    player.getCardList().size() + "   ");
+        }
+        System.out.print("\nYour choice: ");
+    }
 }

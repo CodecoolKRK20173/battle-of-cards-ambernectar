@@ -23,8 +23,7 @@ public class GameController {
     void run(){
         setupGame2();
         while (!players.isGameOver()){
-            view.clear();
-            view.printCard(players.getCurrentCard(), 0, 1);
+            view.displayGameScreen(players);
             int winner = players.playRound(scan.nextLine());
             players.moveCards(winner);
             scan.nextLine();

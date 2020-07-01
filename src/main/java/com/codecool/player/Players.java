@@ -58,10 +58,6 @@ public class Players {
         return winner;
     }
 
-    private Card getTopCardOfPlayer (int playerNumber){
-        return playersList.get(playerNumber).getCardList().get(0);
-    }
-
     public boolean isGameOver(){
         for (Player player : playersList) {
             if (player.getCardList().size() == 0){
@@ -82,7 +78,22 @@ public class Players {
         }
     }
 
+    public List<Player> getPlayersList(){
+        return playersList;
+    }
+    private Card getTopCardOfPlayer (int playerNumber){
+        return playersList.get(playerNumber).getCardList().get(0);
+    }
+
     public Card getCurrentCard(){
-        return playersList.get(currentPlayer).getCardList().get(0);
+        return getTopCardOfPlayer(0);
+    }
+
+    public String getNameOfPlayer (int playerNumber){
+        return playersList.get(playerNumber).getOwnerName();
+    }
+
+    public String getCurrentPlayerName(){
+        return getNameOfPlayer(0);
     }
 }

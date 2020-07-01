@@ -24,11 +24,10 @@ public class GameController {
         setupGame2();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
-            int winner = players.playRound(scan.nextLine());
-            players.moveCards(winner);
-            scan.nextLine();
-            players.iteratePlayers();
+            players.playRound(scan.nextLine());
         }
+        view.displayEndScreen(players.getWinnerName());
+        scan.nextLine();
     }
 
     private void setupGame2(){

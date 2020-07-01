@@ -32,16 +32,20 @@ public class Players {
         this.playersList.get(playerNumber).addCard(card);
     }
 
-    public int playRound(String ch) {
+    public void playRound(String ch) {
+        int winner = -1;
         switch (ch) {
             case "a":
-                return findWinner(new ComparatorIbu());
+                winner = findWinner(new ComparatorIbu());
             case "s":
-                return findWinner(new ComparatorPrice());
+                winner = findWinner(new ComparatorPrice());
             case "d":
-                return findWinner(new ComparatorPercentage());
+                winner = findWinner(new ComparatorPercentage());
         }
-        return -1;
+        if (winner >= 0){
+            moveCards(winner);
+            iteratePlayers();
+        }
     }
 
     private int findWinner(Comparator<Card> comparator) {
@@ -95,5 +99,19 @@ public class Players {
 
     public String getCurrentPlayerName(){
         return getNameOfPlayer(0);
+    }
+
+    public String getWinnerName(){
+        int winner = 0;
+        for (int i = 1; i < playersList.size(); i++) {
+            if (numberOfPlayerCards(winner) < numberOfPlayerCards(i)){
+                winner = i;
+            }
+        }
+        return getNameOfPlayer(winner);
+    }
+
+    public int numberOfPlayerCards(int playerNumber){
+        return playersList.get(playerNumber).getCardList().size();
     }
 }

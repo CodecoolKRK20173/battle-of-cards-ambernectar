@@ -58,4 +58,9 @@ public class View {
         }
         System.out.print("\nYour choice: ");
     }
+
+    void displayEndScreen(String winner){
+        clear();
+        printLine("The winner is " + winner);
+    }
 }

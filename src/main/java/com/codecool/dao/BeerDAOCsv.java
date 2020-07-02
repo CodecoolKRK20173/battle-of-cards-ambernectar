@@ -47,7 +47,7 @@ public class BeerDAOCsv implements BeerDAO {
         loadedCards.add(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")));
         loadedCards.add(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")));
         loadedCards.add(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")));
-        loadedCards.add(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee"));
+        loadedCards.add(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")));
         loadedCards.add(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")));
 
         return loadedCards;

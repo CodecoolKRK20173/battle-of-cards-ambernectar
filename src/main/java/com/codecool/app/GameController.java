@@ -40,8 +40,8 @@ public class GameController {
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
-//        int playerChoice = util.getChoice(optionsList, "Chose game mode");
-        int playerChoice = 0;
+        int playerChoice = util.getChoice(optionsList, "Chose game mode");
+//        int playerChoice = 0;
 
         if (playerChoice == 0) {
             setupGame2Players();
@@ -67,16 +67,16 @@ public class GameController {
             e.printStackTrace();
         }
 
-        players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
-        players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
-        players.addCard(new Card("Trzecia Pomoc",13, 500, 43, new BeerStyle("Lager")), 2);
-
-        players.addCard(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")), 0);
-        players.addCard(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")), 1);
-        players.addCard(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")), 2);
-
-        players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
-        players.addCard(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")), 1);
+//        players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
+//        players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
+//        players.addCard(new Card("Trzecia Pomoc",13, 500, 43, new BeerStyle("Lager")), 2);
+//
+//        players.addCard(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")), 0);
+//        players.addCard(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")), 1);
+//        players.addCard(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")), 2);
+//
+//        players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
+//        players.addCard(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")), 1);
 
     }
 

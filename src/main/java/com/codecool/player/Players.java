@@ -12,10 +12,12 @@ import java.util.List;
 public class Players {
     private List<Player> playersList;
     private int currentPlayer;
+    private List<Card> drawCardStack;
 
     public Players() {
         this.playersList = new ArrayList<>();
         this.currentPlayer = 0;
+        this.drawCardStack = new ArrayList<>();
     }
 
     public void iteratePlayers() {
@@ -33,7 +35,7 @@ public class Players {
     }
 
     public void playRound(ComparisonOption ch) {
-        int winner = -1;
+        List<Integer> winner = new ArrayList<>();
         switch (ch) {
             case IBU:
                 winner = findWinner(new ComparatorIbu());
@@ -42,21 +44,31 @@ public class Players {
             case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
         }
-        if (winner >= 0){
-            moveCards(winner);
+        // One winner
+        if (winner.size() == 1){
+            moveCards(winner.get(0));
+            iteratePlayers();
+        // Multiple winners
+        } else if (winner.size() > 1){
+            for (Player player : playersList) {
+                drawCardStack.add(player.getTopCard());
+            }
             iteratePlayers();
         }
     }
 
-    private int findWinner(Comparator<Card> comparator) {
-        int winner = 0;
+    private List<Integer> findWinner(Comparator<Card> comparator) {
+        List<Integer> winner = new ArrayList<>();
+        winner.add(0);
         for (int i = 1; i < playersList.size(); i++) {
-            int result = comparator.compare(getTopCardOfPlayer(winner),
+            int result = comparator.compare(getTopCardOfPlayer(winner.get(0)),
                                     getTopCardOfPlayer(i));
             switch (result) {
                 case 1:
-                    winner = i;
-                    // TODO implement draws somehow
+                    winner.clear();
+                    winner.add(i);
+                case -1:
+                    winner.add(i);
             }
         }
         return winner;
@@ -80,6 +92,10 @@ public class Players {
         for (Card card : tempCardList) {
             playersList.get(winner).addCard(card);
         }
+        for (Card card : drawCardStack) {
+            playersList.get(winner).addCard(card);
+        }
+        drawCardStack.clear();
     }
 
     public List<Player> getPlayersList(){

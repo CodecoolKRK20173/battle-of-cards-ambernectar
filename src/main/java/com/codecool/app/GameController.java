@@ -40,8 +40,8 @@ public class GameController {
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
-        int playerChoice = util.getChoice(optionsList, "Chose game mode");
-//        int playerChoice = 1;
+//        int playerChoice = util.getChoice(optionsList, "Chose game mode");
+        int playerChoice = 0;
 
         if (playerChoice == 0) {
             setupGame2Players();
@@ -59,9 +59,10 @@ public class GameController {
 
         players.addPlayer(new Player("Player1"));
         players.addPlayer(new Player("Player2"));
+        List<Card> allCards = new ArrayList<Card>();
 
         try {
-            List<Card> allCards = dao.loadDatabase("database.csv");
+            allCards = dao.loadDatabase("database.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

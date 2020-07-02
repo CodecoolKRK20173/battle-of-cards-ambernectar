@@ -2,8 +2,12 @@ package com.codecool.app;
 
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
+import com.codecool.dao.BeerDAO;
+import com.codecool.dao.BeerDAOCsv;
 import com.codecool.player.Player;
 import com.codecool.player.Players;
+
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.Scanner;
 
@@ -40,7 +44,7 @@ public class GameController {
 //        int playerChoice = 1;
 
         if (playerChoice == 0) {
-            setupGame3Players();
+            setupGame2Players();
         }   else if (playerChoice == 1) {
             setupGame3Players();
         } else if (playerChoice == 2) {
@@ -48,14 +52,19 @@ public class GameController {
         }
     }
 
-    private void setupGame2Players(){
+    private void setupGame2Players() {
+        BeerDAO dao = new BeerDAOCsv();
+
         view.clear();
 
         players.addPlayer(new Player("Player1"));
         players.addPlayer(new Player("Player2"));
 
-        List<Card> allCards = new ArrayList<Card>();
-
+        try {
+            List<Card> allCards = dao.loadDatabase("database.csv");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
         players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);

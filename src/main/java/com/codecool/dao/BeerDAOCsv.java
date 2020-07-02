@@ -13,26 +13,33 @@ import java.util.Scanner;
 public class BeerDAOCsv implements BeerDAO {
     @Override
     public List<Card> loadDatabase(String filename) throws FileNotFoundException {
-        List<Card> loadedCards = new ArrayList<Card>();
-        Scanner scanner = new Scanner(new File(filename));
-//        scanner.useDelimiter(",");
-        while(scanner.hasNext()){
-            String[] row = scanner.next().split(",");
-            String name = row[0];
-            Integer ibu = Integer.parseInt(row[1]);
-            int price = Integer.parseInt(row[2]);
-            int percentage = Integer.parseInt(row[3]);
-            BeerStyle style;
 
-            if (row.length == 5) {
-                style = new BeerStyle(row[5]);
-            } else {
-                style = new BeerStyle(row[5], row[6]);
+        List<Card> loadedCards = new ArrayList<Card>();
+        Scanner scanner;
+        try {
+            scanner = new Scanner(new File(filename));
+            while(scanner.hasNext()){
+                String[] row = scanner.next().split(",");
+                String name = row[0];
+                Integer ibu = Integer.parseInt(row[1]);
+                int price = Integer.parseInt(row[2]);
+                int percentage = Integer.parseInt(row[3]);
+                BeerStyle style;
+
+                if (row.length == 5) {
+                    style = new BeerStyle(row[5]);
+                } else {
+                    style = new BeerStyle(row[5], row[6]);
+                }
+                loadedCards.add(new Card(name, ibu, price, percentage, style));
             }
-            loadedCards.add(new Card(name, ibu, price, percentage, style));
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        scanner.close();
         return loadedCards;
+//        scanner.useDelimiter(",");
+
     }
 
     @Override

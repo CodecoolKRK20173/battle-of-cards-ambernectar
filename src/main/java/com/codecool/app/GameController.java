@@ -2,6 +2,7 @@ package com.codecool.app;
 
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
+import com.codecool.player.ComparisonOption;
 import com.codecool.player.Player;
 import com.codecool.player.Players;
 import java.util.*;
@@ -24,7 +25,8 @@ public class GameController {
         setupGame2();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
-            players.playRound(scan.nextLine());
+            ComparisonOption comparison = getCompareChoice();
+            players.playRound(comparison);
         }
         view.displayEndScreen(players.getWinnerName());
         scan.nextLine();
@@ -67,5 +69,10 @@ public class GameController {
 
         players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
         players.addCard(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")), 1);
+    }
+
+    private ComparisonOption getCompareChoice() {
+        String key = scan.nextLine();
+        return ComparisonOption.getOption(key);
     }
 }

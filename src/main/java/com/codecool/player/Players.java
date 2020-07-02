@@ -32,14 +32,14 @@ public class Players {
         this.playersList.get(playerNumber).addCard(card);
     }
 
-    public void playRound(String ch) {
+    public void playRound(ComparisonOption ch) {
         int winner = -1;
         switch (ch) {
-            case "a":
+            case IBU:
                 winner = findWinner(new ComparatorIbu());
-            case "s":
+            case PRICE:
                 winner = findWinner(new ComparatorPrice());
-            case "d":
+            case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
         }
         if (winner >= 0){

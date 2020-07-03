@@ -69,6 +69,8 @@ public class GameController {
             e.printStackTrace();
         }
 
+        divideCardStack(players, allCards);
+
 //        players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
 //        players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
 //        players.addCard(new Card("Trzecia Pomoc",13, 500, 43, new BeerStyle("Lager")), 2);

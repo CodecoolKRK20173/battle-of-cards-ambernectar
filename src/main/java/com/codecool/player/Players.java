@@ -154,9 +154,11 @@ public class Players {
     }
 
     public void setupStyleRates(){
-        for (Card card : deckCopy) {
-            incrementStyle(card.getPrimaryStyle());
-            incrementStyle(card.getSecondaryStyle());
+        if (deckCopy != null){
+            for (Card card : deckCopy) {
+                incrementStyle(card.getPrimaryStyle());
+                incrementStyle(card.getSecondaryStyle());
+            }
         }
     }
 

@@ -51,7 +51,7 @@ public class View {
         clear();
         printLine("Current player: " + players.getCurrentPlayerName() + "\n");
         printCard(players.getCurrentCard(), 4, 3);
-        printLine("a: IBU, s: Price, d: Percentage");
+        printLine("a: IBU, s: Price, d: Percentage, f: Style");
         for (Player player : players.getPlayersList()) {
             System.out.print(player.getOwnerName() + ": " +
                     player.getCardList().size() + "   ");

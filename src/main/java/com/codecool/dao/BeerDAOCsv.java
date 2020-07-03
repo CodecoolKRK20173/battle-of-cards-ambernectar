@@ -2,7 +2,6 @@ package com.codecool.dao;
 
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
-import com.codecool.player.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +14,24 @@ public class BeerDAOCsv implements BeerDAO {
     @Override
     public List<Card> loadDatabase(String filename) throws FileNotFoundException {
 
-        InputStream input = ClassLoader.class.getResourceAsStream(filename);
+//        source:
+//        https://stackoverflow.com/questions/15749192/how-do-i-load-a-file-from-resource-folder
+
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = classloader.getResourceAsStream("database2.csv");
+
+//        String theString = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+
+//        source:
+//https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
+//        StringWriter writer = new StringWriter();
+//        IOUtils.copy(inputStream, writer,  "UTF-8");
+//        String theString = writer.toString();
+
+
+        Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+        String result = s.hasNext() ? s.next() : "";
+
 
         //TODO cant find database.csv
         List<Card> loadedCards = new ArrayList<Card>();

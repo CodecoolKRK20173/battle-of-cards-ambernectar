@@ -25,12 +25,16 @@ public class Players {
     private List<Card> deckCopy;
     private Map<String, Integer> styleRates;
 
-    public Players(String databaseName) throws FileNotFoundException {
+    public Players(String databaseName){
         this.playersList = new ArrayList<>();
         this.currentPlayer = 0;
         this.databaseName = databaseName;
         BeerDAO dao = new BeerDAOCsv();
-        this.allCards = dao.loadDatabase(databaseName);
+        try {
+            this.allCards = dao.loadDatabase(databaseName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         this.drawCardStack = new ArrayList<>();
         this.styleRates = new HashMap<>();
     }

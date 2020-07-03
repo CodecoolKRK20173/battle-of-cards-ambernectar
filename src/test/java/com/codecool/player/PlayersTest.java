@@ -60,7 +60,7 @@ public class PlayersTest {
     }
 
     private Players createTestObject(){
-        Players players = new Players();
+        Players players = new Players("dummydatebase.csv");
 
         players.addPlayer(new Player("Player1"));
         players.addPlayer(new Player("Player2"));

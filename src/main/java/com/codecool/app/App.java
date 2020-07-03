@@ -10,7 +10,7 @@ public class App
 //        DataGenerator dataGenerator = new DataGenerator("database2.csv");
 //        dataGenerator.generateDatabase(100);
 
-        GameController gameController = new GameController("/java/resources/database2.csv");
+        GameController gameController = new GameController("database2.csv");
         gameController.run();
     }
 }

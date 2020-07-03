@@ -1,5 +1,6 @@
 package com.codecool.player;
 
+import com.codecool.app.ComparisonOption;
 import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
@@ -39,22 +40,26 @@ public class Players {
         switch (ch) {
             case IBU:
                 winner = findWinner(new ComparatorIbu());
+                break;
             case PRICE:
                 winner = findWinner(new ComparatorPrice());
+                break;
             case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
+                break;
         }
         // One winner
         if (winner.size() == 1){
             moveCards(winner.get(0));
-            iteratePlayers();
+
         // Multiple winners
         } else if (winner.size() > 1){
             for (Player player : playersList) {
                 drawCardStack.add(player.getTopCard());
+                player.getCardList().remove(0);
             }
-            iteratePlayers();
         }
+        iteratePlayers();
     }
 
     private List<Integer> findWinner(Comparator<Card> comparator) {
@@ -66,9 +71,9 @@ public class Players {
             switch (result) {
                 case 1:
                     winner.clear();
-                    winner.add(i);
                 case -1:
                     winner.add(i);
+                    break;
             }
         }
         return winner;
@@ -101,12 +106,13 @@ public class Players {
     public List<Player> getPlayersList(){
         return playersList;
     }
+
     private Card getTopCardOfPlayer (int playerNumber){
         return playersList.get(playerNumber).getCardList().get(0);
     }
 
     public Card getCurrentCard(){
-        return getTopCardOfPlayer(0);
+        return getTopCardOfPlayer(currentPlayer);
     }
 
     public String getNameOfPlayer (int playerNumber){
@@ -114,7 +120,7 @@ public class Players {
     }
 
     public String getCurrentPlayerName(){
-        return getNameOfPlayer(0);
+        return getNameOfPlayer(currentPlayer);
     }
 
     public String getWinnerName(){
@@ -129,5 +135,9 @@ public class Players {
 
     public int numberOfPlayerCards(int playerNumber){
         return playersList.get(playerNumber).getCardList().size();
+    }
+
+    public int getNumberOfDrawnCards(){
+        return drawCardStack.size();
     }
 }

@@ -1,4 +1,4 @@
-package com.codecool.player;
+package com.codecool.app;
 
 public enum ComparisonOption {
     IBU,
@@ -11,10 +11,13 @@ public enum ComparisonOption {
         switch (key) {
             case "a":
                 result = IBU;
+                break;
             case "s":
-                result = PERCENTAGE;
-            case "d":
                 result = PRICE;
+                break;
+            case "d":
+                result = PERCENTAGE;
+                break;
         }
         return result;
     }

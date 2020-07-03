@@ -6,28 +6,20 @@ import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Players {
     private List<Player> playersList;
     private int currentPlayer;
     private List<Card> drawCardStack;
     private List<Card> deckCopy;
-
-    public void setDeckCopy(List<Card> deckCopy) {
-        this.deckCopy = deckCopy;
-    }
-
-    public List<Card> getDeckCopy() {
-        return deckCopy;
-    }
+    private Map<String, Integer> styleRates;
 
     public Players() {
         this.playersList = new ArrayList<>();
         this.currentPlayer = 0;
         this.drawCardStack = new ArrayList<>();
+        this.styleRates = new HashMap<>();
     }
 
     public void iteratePlayers() {
@@ -150,5 +142,23 @@ public class Players {
         return drawCardStack.size();
     }
 
+    public void setDeckCopy(List<Card> deckCopy) {
+        this.deckCopy = deckCopy;
+    }
 
+    public List<Card> getDeckCopy() {
+        return deckCopy;
+    }
+
+    public void setupStyleRates(){
+        for (Card card : deckCopy) {
+            incrementStyle(card.getPrimaryStyle());
+            incrementStyle(card.getSecondaryStyle());
+        }
+    }
+
+    private void incrementStyle(String key){
+        styleRates.putIfAbsent(key, 1);
+        styleRates.put(key, styleRates.get(key) + 1);
+    }
 }

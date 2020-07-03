@@ -14,6 +14,15 @@ public class Players {
     private List<Player> playersList;
     private int currentPlayer;
     private List<Card> drawCardStack;
+    private List<Card> deckCopy;
+
+    public void setDeckCopy(List<Card> deckCopy) {
+        this.deckCopy = deckCopy;
+    }
+
+    public List<Card> getDeckCopy() {
+        return deckCopy;
+    }
 
     public Players() {
         this.playersList = new ArrayList<>();
@@ -140,4 +149,6 @@ public class Players {
     public int getNumberOfDrawnCards(){
         return drawCardStack.size();
     }
+
+
 }

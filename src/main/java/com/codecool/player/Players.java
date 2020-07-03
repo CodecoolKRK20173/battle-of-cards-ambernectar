@@ -159,7 +159,6 @@ public class Players {
 
     public int getNumberOfDrawnCards(){
         return drawCardStack.size();
-        }
     }
 
     public void setDeckCopy(List<Card> deckCopy) {

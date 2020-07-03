@@ -17,12 +17,12 @@ public class LocalUtil {
 
         Scanner input = new Scanner(System.in);
 
-        while (correctOption == false) {
+        while (!correctOption) {
             view.clear();
             view.printOptions(optionsList, message);
             String StringChoice = input.nextLine();
-            choice = 1;
-//            choice = validateAsInt(StringChoice);
+//            choice = 1;
+            choice = validateAsInt(StringChoice);
             if (choice <= optionsList.size()) {
                 correctOption = true;
             }

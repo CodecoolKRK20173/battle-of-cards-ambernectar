@@ -4,7 +4,10 @@ import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
+import com.codecool.dao.BeerDAO;
+import com.codecool.dao.BeerDAOCsv;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,10 +15,15 @@ import java.util.List;
 public class Players {
     private List<Player> playersList;
     private int currentPlayer;
+    private List<Card> allCards;
+    private String databaseName;
 
-    public Players() {
+    public Players(String databaseName) throws FileNotFoundException {
         this.playersList = new ArrayList<>();
         this.currentPlayer = 0;
+        this.databaseName = databaseName;
+        BeerDAO dao = new BeerDAOCsv();
+        this.allCards = dao.loadDatabase(databaseName);
     }
 
     public void iteratePlayers() {
@@ -113,5 +121,9 @@ public class Players {
 
     public int numberOfPlayerCards(int playerNumber){
         return playersList.get(playerNumber).getCardList().size();
+    }
+
+    public List<Card> getAllCards() {
+        return allCards;
     }
 }

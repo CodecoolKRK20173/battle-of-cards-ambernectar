@@ -17,10 +17,12 @@ public class GameController {
     LocalUtil util;
     Scanner scan;
     private Random randomGenerator;
+    String databaseName;
 
-    public GameController() {
+    public GameController(String databaseName) throws FileNotFoundException {
         this.view = new View();
-        this.players = new Players();
+        this.databaseName = databaseName;
+        this.players = new Players(databaseName);
         this.util = new LocalUtil();
         scan = new Scanner(System.in);
         randomGenerator = new Random();
@@ -64,7 +66,7 @@ public class GameController {
         List<Card> allCards = new ArrayList<Card>();
 
         try {
-            allCards = dao.loadDatabase("database.csv");
+            allCards = dao.loadDatabase(databaseName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

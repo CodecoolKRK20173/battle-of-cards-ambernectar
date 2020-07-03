@@ -5,6 +5,7 @@ import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
+import com.codecool.comparator.ComparatorStyle;
 
 import java.util.*;
 
@@ -48,6 +49,8 @@ public class Players {
             case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
                 break;
+            case STYLE:
+                winner = findWinner(new ComparatorStyle(this.styleRates));
         }
         // One winner
         if (winner.size() == 1){

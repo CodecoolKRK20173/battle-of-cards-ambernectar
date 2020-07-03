@@ -32,9 +32,12 @@ public class GameController {
         setupGame();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
-            players.playRound(scan.nextLine());
+            ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
+            if (comparison != ComparisonOption.NONE){
+                players.playRound(comparison);
+            }
         }
-        view.displayEndScreen(players.getWinnerName());
+        view.displayEndScreen(players);
         scan.nextLine();
     }
 
@@ -121,15 +124,21 @@ public class GameController {
         players.addPlayer(new Player("Player2"));
         players.addPlayer(new Player("Player3"));
 
-        players.addCard(new Card("Pierwsza Pomoc",15, 520, 42, new BeerStyle("Lager")), 0);
+        players.addCard(new Card("Pierwsza Pomoc",10, 520, 42, new BeerStyle("Lager")), 0);
         players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
-        players.addCard(new Card("Trzecia Pomoc",13, 500, 43, new BeerStyle("Lager")), 2);
+        players.addCard(new Card("Trzecia Pomoc",10, 500, 43, new BeerStyle("Lager")), 2);
 
         players.addCard(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")), 0);
         players.addCard(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")), 1);
         players.addCard(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")), 2);
 
         players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
-        players.addCard(new Card("Guines",30, 800, 75, new BeerStyle("Stout", "Coffee")), 1);
+        players.addCard(new Card("Guines",30, 800, 81, new BeerStyle("Stout", "Coffee")), 1);
+        players.addCard(new Card("Guines",31, 700, 78, new BeerStyle("Stout", "Coffee")), 2);
+    }
+
+    private ComparisonOption getCompareChoice() {
+        String key = scan.nextLine();
+        return ComparisonOption.getOption(key);
     }
 }

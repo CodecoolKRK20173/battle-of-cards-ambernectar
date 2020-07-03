@@ -36,4 +36,8 @@ public class Player {
         }
         return resultCard;
     }
+
+    public Card getTopCard(){
+        return cardList.get(0);
+    }
 }

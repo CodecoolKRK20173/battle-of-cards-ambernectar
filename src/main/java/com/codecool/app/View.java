@@ -56,11 +56,19 @@ public class View {
             System.out.print(player.getOwnerName() + ": " +
                     player.getCardList().size() + "   ");
         }
-        System.out.print("\nYour choice: ");
+        System.out.println();
+        if (players.getNumberOfDrawnCards() > 0){
+            System.out.println("Number of pooled cards: " + players.getNumberOfDrawnCards());
+        }
+        System.out.print("Your choice: ");
     }
 
-    void displayEndScreen(String winner){
+    void displayEndScreen(Players players){
         clear();
-        printLine("The winner is " + winner);
+        printLine("The winner is " + players.getWinnerName());
+        for (Player player : players.getPlayersList()) {
+            printLine(player.getOwnerName() + ": " + player.getCardList().size() + " cards");
+        }
+        printLine("Press enter to finish");
     }
 }

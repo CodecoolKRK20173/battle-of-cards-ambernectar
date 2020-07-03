@@ -1,5 +1,6 @@
 package com.codecool.player;
 
+import com.codecool.app.ComparisonOption;
 import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
@@ -17,6 +18,7 @@ public class Players {
     private int currentPlayer;
     private List<Card> allCards;
     private String databaseName;
+    private List<Card> drawCardStack;
 
     public Players(String databaseName) throws FileNotFoundException {
         this.playersList = new ArrayList<>();
@@ -24,6 +26,7 @@ public class Players {
         this.databaseName = databaseName;
         BeerDAO dao = new BeerDAOCsv();
         this.allCards = dao.loadDatabase(databaseName);
+        this.drawCardStack = new ArrayList<>();
     }
 
     public void iteratePlayers() {
@@ -40,31 +43,45 @@ public class Players {
         this.playersList.get(playerNumber).addCard(card);
     }
 
-    public void playRound(String ch) {
-        int winner = -1;
+    public void playRound(ComparisonOption ch) {
+        List<Integer> winner = new ArrayList<>();
         switch (ch) {
-            case "a":
+            case IBU:
                 winner = findWinner(new ComparatorIbu());
-            case "s":
+                break;
+            case PRICE:
                 winner = findWinner(new ComparatorPrice());
-            case "d":
+                break;
+            case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
+                break;
         }
-        if (winner >= 0){
-            moveCards(winner);
-            iteratePlayers();
+        // One winner
+        if (winner.size() == 1){
+            moveCards(winner.get(0));
+
+        // Multiple winners
+        } else if (winner.size() > 1){
+            for (Player player : playersList) {
+                drawCardStack.add(player.getTopCard());
+                player.getCardList().remove(0);
+            }
         }
+        iteratePlayers();
     }
 
-    private int findWinner(Comparator<Card> comparator) {
-        int winner = 0;
+    private List<Integer> findWinner(Comparator<Card> comparator) {
+        List<Integer> winner = new ArrayList<>();
+        winner.add(0);
         for (int i = 1; i < playersList.size(); i++) {
-            int result = comparator.compare(getTopCardOfPlayer(winner),
+            int result = comparator.compare(getTopCardOfPlayer(winner.get(0)),
                                     getTopCardOfPlayer(i));
             switch (result) {
                 case 1:
-                    winner = i;
-                    // TODO implement draws somehow
+                    winner.clear();
+                case -1:
+                    winner.add(i);
+                    break;
             }
         }
         return winner;
@@ -88,17 +105,22 @@ public class Players {
         for (Card card : tempCardList) {
             playersList.get(winner).addCard(card);
         }
+        for (Card card : drawCardStack) {
+            playersList.get(winner).addCard(card);
+        }
+        drawCardStack.clear();
     }
 
     public List<Player> getPlayersList(){
         return playersList;
     }
+
     private Card getTopCardOfPlayer (int playerNumber){
         return playersList.get(playerNumber).getCardList().get(0);
     }
 
     public Card getCurrentCard(){
-        return getTopCardOfPlayer(0);
+        return getTopCardOfPlayer(currentPlayer);
     }
 
     public String getNameOfPlayer (int playerNumber){
@@ -106,7 +128,7 @@ public class Players {
     }
 
     public String getCurrentPlayerName(){
-        return getNameOfPlayer(0);
+        return getNameOfPlayer(currentPlayer);
     }
 
     public String getWinnerName(){
@@ -126,4 +148,8 @@ public class Players {
     public List<Card> getAllCards() {
         return allCards;
     }
+
+    public int getNumberOfDrawnCards(){
+        return drawCardStack.size();
+        }
 }

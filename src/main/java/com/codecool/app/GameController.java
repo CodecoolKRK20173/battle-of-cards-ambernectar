@@ -16,12 +16,14 @@ public class GameController {
     Players players;
     LocalUtil util;
     Scanner scan;
+    private Random randomGenerator;
 
     public GameController() {
         this.view = new View();
         this.players = new Players();
         this.util = new LocalUtil();
         scan = new Scanner(System.in);
+        randomGenerator = new Random();
     }
 
     void run(){
@@ -80,6 +82,33 @@ public class GameController {
 
     }
 
+    private void divideCardStack(Players players, List<Card> allCards) {
+        discardExcessCards(allCards, players);
+        int counter = 0;
+        int playerId;
+        while (allCards.size() > 0) {
+            Card nextCard = getRandomCard(allCards);
+            playerId = counter % players.getPlayersList().size();
+            players.addCard(nextCard, playerId);
+        }
+    }
+
+    private void discardExcessCards (List<Card> cardList, Players players) {
+        int qtyCardsToDiscard = cardList.size()% players.getPlayersList().size();
+        for (int index = 0; index < qtyCardsToDiscard; index++) {
+            Card removedCard = getRandomCard(cardList);
+        }
+    }
+
+    private Card getRandomCard (List<Card> cardList) {
+        //Return card from list, remove said card from list
+
+        int index = randomGenerator.nextInt(cardList.size());
+        Card pickedCard = cardList.get(index);
+        cardList.remove(pickedCard);
+
+        return pickedCard;
+    }
 
     private void setupGame3Players(){
         view.clear();

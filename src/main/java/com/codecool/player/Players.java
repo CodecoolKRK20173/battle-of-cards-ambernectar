@@ -12,6 +12,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import com.codecool.comparator.ComparatorStyle;
+
+import java.util.*;
 
 public class Players {
     private List<Player> playersList;
@@ -19,6 +22,8 @@ public class Players {
     private List<Card> allCards;
     private String databaseName;
     private List<Card> drawCardStack;
+    private List<Card> deckCopy;
+    private Map<String, Integer> styleRates;
 
     public Players(String databaseName) throws FileNotFoundException {
         this.playersList = new ArrayList<>();
@@ -27,6 +32,7 @@ public class Players {
         BeerDAO dao = new BeerDAOCsv();
         this.allCards = dao.loadDatabase(databaseName);
         this.drawCardStack = new ArrayList<>();
+        this.styleRates = new HashMap<>();
     }
 
     public void iteratePlayers() {
@@ -55,6 +61,8 @@ public class Players {
             case PERCENTAGE:
                 winner = findWinner(new ComparatorPercentage());
                 break;
+            case STYLE:
+                winner = findWinner(new ComparatorStyle(this.styleRates));
         }
         // One winner
         if (winner.size() == 1){
@@ -152,4 +160,27 @@ public class Players {
     public int getNumberOfDrawnCards(){
         return drawCardStack.size();
         }
+    }
+
+    public void setDeckCopy(List<Card> deckCopy) {
+        this.deckCopy = deckCopy;
+    }
+
+    public List<Card> getDeckCopy() {
+        return deckCopy;
+    }
+
+    public void setupStyleRates(){
+        if (deckCopy != null){
+            for (Card card : deckCopy) {
+                incrementStyle(card.getPrimaryStyle());
+                incrementStyle(card.getSecondaryStyle());
+            }
+        }
+    }
+
+    private void incrementStyle(String key){
+        styleRates.putIfAbsent(key, 1);
+        styleRates.put(key, styleRates.get(key) + 1);
+    }
 }

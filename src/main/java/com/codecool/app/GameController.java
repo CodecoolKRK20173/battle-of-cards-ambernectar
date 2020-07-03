@@ -30,6 +30,7 @@ public class GameController {
 
     void run(){
         setupGame();
+        players.setupStyleRates();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
             ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());

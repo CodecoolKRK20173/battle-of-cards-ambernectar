@@ -22,7 +22,6 @@ public class Players {
     private List<Card> allCards;
     private String databaseName;
     private List<Card> drawCardStack;
-    private List<Card> deckCopy;
     private Map<String, Integer> styleRates;
 
     public Players(String databaseName){
@@ -161,25 +160,17 @@ public class Players {
         return playersList.get(playerNumber).getCardList().size();
     }
 
-    public List<Card> getAllCards() {
-        return allCards;
-    }
-
     public int getNumberOfDrawnCards(){
         return drawCardStack.size();
     }
 
-    public void setDeckCopy(List<Card> deckCopy) {
-        this.deckCopy = deckCopy;
-    }
-
-    public List<Card> getDeckCopy() {
-        return deckCopy;
+    public List<Card> getAllCards() {
+        return allCards;
     }
 
     public void setupStyleRates(){
-        if (deckCopy != null){
-            for (Card card : deckCopy) {
+        if (allCards != null){
+            for (Card card : allCards) {
                 incrementStyle(card.getPrimaryStyle());
                 incrementStyle(card.getSecondaryStyle());
             }

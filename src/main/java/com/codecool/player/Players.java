@@ -1,6 +1,8 @@
 package com.codecool.player;
 
+import com.codecool.app.AnimatedCard;
 import com.codecool.app.ComparisonOption;
+import com.codecool.app.View;
 import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
@@ -18,12 +20,15 @@ import com.codecool.comparator.ComparatorStyle;
 import java.util.*;
 
 public class Players {
+    private final View view;
     private List<Player> playersList;
     private int currentPlayer;
     private List<Card> allCards;
     private String databaseName;
     private List<Card> drawCardStack;
     private Map<String, Integer> styleRates;
+    private Scanner scan;
+
 
     public Players(String databaseName){
         this.playersList = new ArrayList<>();
@@ -37,6 +42,8 @@ public class Players {
         }
         this.drawCardStack = new ArrayList<>();
         this.styleRates = new HashMap<>();
+        this.scan = new Scanner(System.in);
+        this.view = new View();
     }
 
     public void iteratePlayers() {
@@ -68,6 +75,11 @@ public class Players {
             case STYLE:
                 winner = findWinner(new ComparatorStyle(this.styleRates));
         }
+
+        //Animation
+        view.displayAnimation(getPlayingCards(ch));
+        scan.nextLine();
+
         // One winner
         if (winner.size() == 1){
             moveCards(winner.get(0));
@@ -80,6 +92,26 @@ public class Players {
             }
         }
         iteratePlayers();
+    }
+
+    public List<AnimatedCard> getPlayingCards(ComparisonOption comparison) {
+        List<AnimatedCard> playingCards = new ArrayList<>();
+        for (Player player : playersList) {
+            playingCards.add(new AnimatedCard(player.getTopCard(), player.getOwnerName()));
+        }
+        findPlaces(playingCards, comparison);
+        return playingCards;
+    }
+
+    private void findPlaces(List<AnimatedCard> animatedCards, ComparisonOption comparison) {
+        Comparator comparator = ComparisonOption.getComparator(comparison, styleRates);
+        for (AnimatedCard animatedCard : animatedCards) {
+            for (AnimatedCard card : animatedCards) {
+                if (comparator.compare(animatedCard.getCard(), card.getCard()) == 1){
+                    animatedCard.incrementPlace();
+                }
+            }
+        }
     }
 
     public void setAllCards(List<Card> allCards) {

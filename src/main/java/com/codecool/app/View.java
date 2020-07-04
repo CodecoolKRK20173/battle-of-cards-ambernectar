@@ -7,6 +7,9 @@ import com.codecool.player.Players;
 import java.util.List;
 
 public class View {
+    private static final long ANIMATION_PERIOD = 15;
+    private static final int CARD_INDENT = 6;
+    private static final int CARD_INDENT_VERT = 13;
 
     void printMessage(String message) {
         System.out.println(message);
@@ -23,22 +26,18 @@ public class View {
         }
     }
 
-    void printCardSimply(Card card){
-        System.out.println(card.getName());
-        System.out.println("================");
-        System.out.println(card.getSecondaryStyle());
-        System.out.println(card.getPrimaryStyle());
-        System.out.println("IBU: " + card.getIbu());
-        System.out.println("vol. " + card.getPercentage());
-        System.out.println("Price " + card.getPrice() + "\n");
-    }
-
     void printCard(Card card, int x, int y){
         for (String line : card.getCardLineList()) {
             System.out.print("\033[" + y++ + ";" + x + "H");
             System.out.print(line);
         }
         System.out.println();
+    }
+
+    void printCard(Card card, int x, int y, String owner){
+        System.out.print("\033[" + y++ + ";" + x + "H");
+        System.out.print(owner);
+        printCard(card, x, y);
     }
 
     void clear(){
@@ -72,6 +71,7 @@ public class View {
         printLine("Press enter to finish");
     }
 
+<<<<<<< HEAD
     void displayCheatScreen(Players players){
 
         double [] values = players.useCheat();
@@ -79,5 +79,67 @@ public class View {
                 "Ibu = " + Math.round(100*values[0]/values[3])
                 + "%   Percentage = " + Math.round(100*values[1]/values[3]) +
                 "%   Price = " + Math.round(100*values[2]/values[3]) + "%");
+=======
+    public void displayAnimation(List<AnimatedCard> playingCards){
+        displayFrame(playingCards);
+        for (AnimatedCard playingCard : playingCards) {
+            moveHorizontally(playingCard, playingCards);
+        }
+
+        for (AnimatedCard playingCard : playingCards) {
+            moveVertically(playingCard, playingCards);
+        }
+    }
+
+    private void moveHorizontally(AnimatedCard card, List<AnimatedCard> playingCards) {
+        int newX = card.getX() + card.getPlace() * (Card.getCardWidth() + CARD_INDENT);
+        for (int i = card.getX(); i < newX; i++) {
+            card.setX(i);
+            displayFrame(playingCards);
+            try {
+                Thread.sleep(ANIMATION_PERIOD);
+            } catch (InterruptedException e) {
+                // TODO
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void moveVertically(AnimatedCard card, List<AnimatedCard> playingCards) {
+        int cardsOnOneSpot;
+        do {
+            // Check if occupied
+            cardsOnOneSpot = 0;
+            for (AnimatedCard playingCard : playingCards) {
+                if (card.getX() == playingCard.getX() && card.getY() == playingCard.getY()){
+                    cardsOnOneSpot++;
+                }
+            }
+
+            if (cardsOnOneSpot > 1) {
+                int newY = card.getY() + (CARD_INDENT_VERT);
+                for (int i = card.getY(); i < newY; i++) {
+                    card.setY(i);
+                    displayFrame(playingCards);
+                    try {
+                        Thread.sleep(ANIMATION_PERIOD);
+                    } catch (InterruptedException e) {
+                        // TODO
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }while (cardsOnOneSpot > 1);
+    }
+
+    void displayFrame(List<AnimatedCard> playingCards){
+        clear();
+        for (AnimatedCard playingCard : playingCards) {
+            printCard(playingCard.getCard(),
+                    playingCard.getX(),
+                    playingCard.getY(),
+                    playingCard.getOwner());
+        }
+>>>>>>> d9c3e35dd8c29793f176ef8cbb712eef9cb5a3c7
     }
 }

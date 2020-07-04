@@ -1,5 +1,8 @@
 package com.codecool.app;
 
+import com.codecool.cards.Card;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -41,5 +44,14 @@ public class LocalUtil {
             view.printMessage("Value is not number, returning 999");
             return 999;
         }
+    }
+
+    public List<Card> deepCopyAList(List<Card> listToCopy) {
+        List<Card> copiedList = new ArrayList<Card>();
+        for(Card nextObject : listToCopy) {
+            copiedList.add(nextObject);
+        }
+
+        return copiedList;
     }
 }

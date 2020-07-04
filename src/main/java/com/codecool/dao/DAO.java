@@ -6,7 +6,7 @@ import com.codecool.player.Player;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public interface BeerDAO {
+public interface DAO {
     public List<Card> loadDatabase(String filename) throws FileNotFoundException;
     public void SaveDatabase(List<Card> cardList);
 }

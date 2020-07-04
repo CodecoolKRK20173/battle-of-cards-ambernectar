@@ -5,8 +5,8 @@ import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
 import com.codecool.comparator.ComparatorPercentage;
 import com.codecool.comparator.ComparatorPrice;
-import com.codecool.dao.BeerDAO;
-import com.codecool.dao.BeerDAOCsv;
+import com.codecool.dao.DAO;
+import com.codecool.dao.DAOCsv;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Players {
         this.playersList = new ArrayList<>();
         this.currentPlayer = 0;
         this.databaseName = databaseName;
-        BeerDAO dao = new BeerDAOCsv();
+        DAO dao = new DAOCsv();
         try {
             this.allCards = dao.loadDatabase(databaseName);
         } catch (FileNotFoundException e) {
@@ -80,6 +80,10 @@ public class Players {
             }
         }
         iteratePlayers();
+    }
+
+    public void setAllCards(List<Card> allCards) {
+        this.allCards = allCards;
     }
 
     private List<Integer> findWinner(Comparator<Card> comparator) {

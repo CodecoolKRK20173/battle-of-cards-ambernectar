@@ -3,7 +3,6 @@ package com.codecool.dao;
 import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class BeerDAOCsv implements BeerDAO {
+public class DAOCsv implements DAO {
     @Override
     public List<Card> loadDatabase(String filename) throws FileNotFoundException {
         List<Card> loadedCards = new ArrayList<Card>();

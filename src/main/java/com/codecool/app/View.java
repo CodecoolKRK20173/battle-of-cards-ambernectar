@@ -71,7 +71,7 @@ public class View {
         printLine("Press enter to finish");
     }
 
-    void displayAnimation(List<AnimatedCard> playingCards){
+    public void displayAnimation(List<AnimatedCard> playingCards){
         displayFrame(playingCards);
         for (AnimatedCard playingCard : playingCards) {
             moveHorizontally(playingCard, playingCards);

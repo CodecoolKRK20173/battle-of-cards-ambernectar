@@ -35,10 +35,6 @@ public class GameController {
             ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
             if (comparison != ComparisonOption.NONE){
                 players.playRound(comparison);
-
-                // Animation
-                view.displayAnimation(players.getPlayingCards(comparison));
-                scan.nextLine();
             }
         }
         view.displayEndScreen(players);
@@ -74,8 +70,6 @@ public class GameController {
             playerNameBuider.append(i);
             players.addPlayer(new Player(playerNameBuider.toString()));
         }
-//        players.addPlayer(new Player("Player1"));
-//        players.addPlayer(new Player("Player2"));
 
         try {
             players.setAllCards(dao.loadDatabase(databaseName));

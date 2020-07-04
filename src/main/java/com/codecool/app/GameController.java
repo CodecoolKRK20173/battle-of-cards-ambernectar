@@ -51,15 +51,23 @@ public class GameController {
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
-        int playerChoice = util.getChoice(optionsList, "Chose game mode");
-//        int playerChoice = 0;
 
-        if (playerChoice == 0) {
-            setupGameNoOfPlayers(2);
-        }   else if (playerChoice == 1) {
-            setupGameNoOfPlayers(3);
-        } else if (playerChoice == 2) {
-            setupGameNoOfPlayers(4);
+//        int playerChoice = 0;
+        boolean shouldRun = true;
+
+        while (shouldRun) {
+            int playerChoice = util.getChoice(optionsList, "Chose game mode");
+
+            if (playerChoice == 0) {
+                setupGameNoOfPlayers(2);
+                shouldRun = false;
+            } else if (playerChoice == 1) {
+                setupGameNoOfPlayers(3);
+                shouldRun = false;
+            } else if (playerChoice == 2) {
+                setupGameNoOfPlayers(4);
+                shouldRun = false;
+            }
         }
     }
 

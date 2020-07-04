@@ -179,7 +179,7 @@ public class Players {
     }
 
     public double[] useCheat(){
-        double [] percentageChances = {0,0,0};
+        double [] percentageChances = {0,0,0,0};
         Card currentCard =  getCurrentCard();
         int denominator = 0;
         List<Card> tempCardList = new ArrayList<>();
@@ -191,6 +191,9 @@ public class Players {
                     int ibu = new ComparatorIbu().compare(card, currentCard);
                     int percentage = new ComparatorPercentage().compare(card, currentCard);
                     int price = new ComparatorPrice().compare(card, currentCard);
+                    if(ibu<0) ibu = 0;
+                    if(percentage<0) percentage=0;
+                    if(price<0) price = 0;
                     percentageChances[0] += ibu;
                     percentageChances[1] += percentage;
                     percentageChances[2] += price;
@@ -198,9 +201,7 @@ public class Players {
 
             }
         }
-        for(double amount : percentageChances){
-            amount = (amount/denominator)*100;
-        }
+        percentageChances[3] = denominator;
         return percentageChances;
 
 

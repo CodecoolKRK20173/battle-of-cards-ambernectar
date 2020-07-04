@@ -1,6 +1,5 @@
 package com.codecool.app;
 
-import com.codecool.cards.BeerStyle;
 import com.codecool.cards.Card;
 import com.codecool.dao.DAO;
 import com.codecool.dao.DAOCsv;
@@ -48,7 +47,7 @@ public class GameController {
 
     private void setupGame(){
         view.printMessage("MENU:");
-        List<String> optionsList = new ArrayList<String>();
+        List<String> optionsList = new ArrayList<>();
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");

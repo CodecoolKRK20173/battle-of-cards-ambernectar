@@ -5,7 +5,6 @@ import com.codecool.player.Player;
 import com.codecool.player.Players;
 
 import java.util.List;
-import java.util.Map;
 
 public class View {
     private static final long ANIMATION_PERIOD = 15;
@@ -25,16 +24,6 @@ public class View {
         }catch (IndexOutOfBoundsException e) {
 //            TODO
         }
-    }
-
-    void printCardSimply(Card card){
-        System.out.println(card.getName());
-        System.out.println("================");
-        System.out.println(card.getSecondaryStyle());
-        System.out.println(card.getPrimaryStyle());
-        System.out.println("IBU: " + card.getIbu());
-        System.out.println("vol. " + card.getPercentage());
-        System.out.println("Price " + card.getPrice() + "\n");
     }
 
     void printCard(Card card, int x, int y){

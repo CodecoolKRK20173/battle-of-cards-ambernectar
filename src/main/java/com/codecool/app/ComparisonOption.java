@@ -30,8 +30,10 @@ public enum ComparisonOption {
                 break;
             case "f":
                 result = STYLE;
+                break;
             case "h":
                 result = CHEAT;
+                break;
         }
         return result;
     }

@@ -48,8 +48,8 @@ public class DAOCsv implements DAO {
         List<String> inputStringSpitted = Arrays.asList(inputString.split(","));
         String name = inputStringSpitted.get(0);
         Integer ibu = Integer.parseInt(inputStringSpitted.get(1));
-        int price = Integer.parseInt(inputStringSpitted.get(2));
-        int percentage = Integer.parseInt(inputStringSpitted.get(3));
+        int percentage = Integer.parseInt(inputStringSpitted.get(2));
+        int price = Integer.parseInt(inputStringSpitted.get(3));
         BeerStyle style;
 
         if (inputStringSpitted.size() == 5) {

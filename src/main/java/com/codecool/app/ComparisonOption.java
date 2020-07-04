@@ -5,6 +5,7 @@ public enum ComparisonOption {
     PERCENTAGE,
     PRICE,
     STYLE,
+    CHEAT,
     NONE;
 
     public static ComparisonOption getOption(String key){
@@ -21,6 +22,8 @@ public enum ComparisonOption {
                 break;
             case "f":
                 result = STYLE;
+            case "h":
+                result = CHEAT;
         }
         return result;
     }

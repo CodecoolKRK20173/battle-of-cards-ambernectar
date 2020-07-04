@@ -34,7 +34,11 @@ public class GameController {
         while (!players.isGameOver()){
             view.displayGameScreen(players);
             ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
-            if (comparison != ComparisonOption.NONE){
+            if (comparison == ComparisonOption.CHEAT){
+                view.displayCheatScreen(players);
+                scan.nextLine();
+            }
+            else if (comparison != ComparisonOption.NONE){
                 players.playRound(comparison);
             }
         }

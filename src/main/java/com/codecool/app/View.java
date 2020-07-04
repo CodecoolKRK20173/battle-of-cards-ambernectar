@@ -51,7 +51,7 @@ public class View {
         clear();
         printLine("Current player: " + players.getCurrentPlayerName() + "\n");
         printCard(players.getCurrentCard(), 4, 3);
-        printLine("a: IBU, s: Price, d: Percentage, f: Style");
+        printLine("a: IBU, s: Price, d: Percentage, f: Style h:cheats");
         for (Player player : players.getPlayersList()) {
             System.out.print(player.getOwnerName() + ": " +
                     player.getCardList().size() + "   ");
@@ -70,5 +70,12 @@ public class View {
             printLine(player.getOwnerName() + ": " + player.getCardList().size() + " cards");
         }
         printLine("Press enter to finish");
+    }
+
+    void displayCheatScreen(Players players){
+
+        double [] values = players.useCheat();
+        printLine("With your current card percentage chance of winning are \n Ibu = " + values[0]
+                + "% Percentage = " + values[1] + "% Price" + values[2] + "%");
     }
 }

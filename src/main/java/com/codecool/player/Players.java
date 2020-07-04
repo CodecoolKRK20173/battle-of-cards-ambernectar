@@ -9,6 +9,7 @@ import com.codecool.dao.DAO;
 import com.codecool.dao.DAOCsv;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -175,6 +176,34 @@ public class Players {
                 incrementStyle(card.getSecondaryStyle());
             }
         }
+    }
+
+    public double[] useCheat(){
+        double [] percentageChances = {0,0,0};
+        Card currentCard =  getCurrentCard();
+        int denominator = 0;
+        List<Card> tempCardList = new ArrayList<>();
+        for (Player player : playersList) {
+            if (this.playersList.get(currentPlayer) != player) {
+                tempCardList = player.getCardList();
+                denominator += tempCardList.size();
+                for (Card card : tempCardList) {
+                    int ibu = new ComparatorIbu().compare(card, currentCard);
+                    int percentage = new ComparatorPercentage().compare(card, currentCard);
+                    int price = new ComparatorPrice().compare(card, currentCard);
+                    percentageChances[0] += ibu;
+                    percentageChances[1] += percentage;
+                    percentageChances[2] += price;
+                }
+
+            }
+        }
+        for(double amount : percentageChances){
+            amount = (amount/denominator)*100;
+        }
+        return percentageChances;
+
+
     }
 
     private void incrementStyle(String key){

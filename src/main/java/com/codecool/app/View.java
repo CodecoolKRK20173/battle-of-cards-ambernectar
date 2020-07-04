@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class View {
-    private static final long ANIMATION_PERIOD = 10;
-    private static final int CARD_INDENT =6;
+    private static final long ANIMATION_PERIOD = 15;
+    private static final int CARD_INDENT = 6;
+    private static final int CARD_INDENT_VERT = 13;
 
     void printMessage(String message) {
         System.out.println(message);
@@ -86,6 +87,10 @@ public class View {
         for (AnimatedCard playingCard : playingCards) {
             moveHorizontally(playingCard, playingCards);
         }
+
+        for (AnimatedCard playingCard : playingCards) {
+            moveVertically(playingCard, playingCards);
+        }
     }
 
     private void moveHorizontally(AnimatedCard card, List<AnimatedCard> playingCards) {
@@ -100,6 +105,33 @@ public class View {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void moveVertically(AnimatedCard card, List<AnimatedCard> playingCards) {
+        int cardsOnOneSpot;
+        do {
+            // Check if occupied
+            cardsOnOneSpot = 0;
+            for (AnimatedCard playingCard : playingCards) {
+                if (card.getX() == playingCard.getX() && card.getY() == playingCard.getY()){
+                    cardsOnOneSpot++;
+                }
+            }
+
+            if (cardsOnOneSpot > 1) {
+                int newY = card.getY() + (CARD_INDENT_VERT);
+                for (int i = card.getY(); i < newY; i++) {
+                    card.setY(i);
+                    displayFrame(playingCards);
+                    try {
+                        Thread.sleep(ANIMATION_PERIOD);
+                    } catch (InterruptedException e) {
+                        // TODO
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }while (cardsOnOneSpot > 1);
     }
 
     void displayFrame(List<AnimatedCard> playingCards){

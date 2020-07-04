@@ -96,7 +96,7 @@ public class Players {
         Comparator comparator = ComparisonOption.getComparator(comparison, styleRates);
         for (AnimatedCard animatedCard : animatedCards) {
             for (AnimatedCard card : animatedCards) {
-                if (comparator.compare(animatedCard, card) == 1){
+                if (comparator.compare(animatedCard.getCard(), card.getCard()) == 1){
                     animatedCard.incrementPlace();
                 }
             }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class View {
+    private static final long ANIMATION_PERIOD = 10;
+    private static final int CARD_INDENT =6;
 
     void printMessage(String message) {
         System.out.println(message);
@@ -81,7 +83,23 @@ public class View {
 
     void displayAnimation(List<AnimatedCard> playingCards){
         displayFrame(playingCards);
-        // TODO iterate and animate
+        for (AnimatedCard playingCard : playingCards) {
+            moveHorizontally(playingCard, playingCards);
+        }
+    }
+
+    private void moveHorizontally(AnimatedCard card, List<AnimatedCard> playingCards) {
+        int newX = card.getX() + card.getPlace() * (Card.getCardWidth() + CARD_INDENT);
+        for (int i = card.getX(); i < newX; i++) {
+            card.setX(i);
+            displayFrame(playingCards);
+            try {
+                Thread.sleep(ANIMATION_PERIOD);
+            } catch (InterruptedException e) {
+                // TODO
+                e.printStackTrace();
+            }
+        }
     }
 
     void displayFrame(List<AnimatedCard> playingCards){
@@ -89,7 +107,7 @@ public class View {
         for (AnimatedCard playingCard : playingCards) {
             printCard(playingCard.getCard(),
                     playingCard.getX(),
-                    playingCard.getX(),
+                    playingCard.getY(),
                     playingCard.getOwner());
         }
     }

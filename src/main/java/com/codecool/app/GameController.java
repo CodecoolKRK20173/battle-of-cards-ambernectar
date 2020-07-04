@@ -39,6 +39,7 @@ public class GameController {
 
                 // Animation
                 view.displayAnimation(players.getPlayingCards(comparison));
+                scan.nextLine();
             }
         }
         view.displayEndScreen(players);

@@ -71,15 +71,16 @@ public class View {
         printLine("Press enter to finish");
     }
 
-<<<<<<< HEAD
-    void displayCheatScreen(Players players){
 
-        double [] values = players.useCheat();
+    void displayCheatScreen(Players players) {
+
+        double[] values = players.useCheat();
         printLine("With your current card percentage chance of winning are \n " +
-                "Ibu = " + Math.round(100*values[0]/values[3])
-                + "%   Percentage = " + Math.round(100*values[1]/values[3]) +
-                "%   Price = " + Math.round(100*values[2]/values[3]) + "%");
-=======
+                "Ibu = " + Math.round(100 * values[0] / values[3])
+                + "%   Percentage = " + Math.round(100 * values[1] / values[3]) +
+                "%   Price = " + Math.round(100 * values[2] / values[3]) + "%");
+    }
+
     public void displayAnimation(List<AnimatedCard> playingCards){
         displayFrame(playingCards);
         for (AnimatedCard playingCard : playingCards) {
@@ -140,6 +141,6 @@ public class View {
                     playingCard.getY(),
                     playingCard.getOwner());
         }
->>>>>>> d9c3e35dd8c29793f176ef8cbb712eef9cb5a3c7
+
     }
 }

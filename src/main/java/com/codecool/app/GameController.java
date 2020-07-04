@@ -36,6 +36,9 @@ public class GameController {
             ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
             if (comparison != ComparisonOption.NONE){
                 players.playRound(comparison);
+
+                // Animation
+                view.displayAnimation(players.getPlayingCards(comparison));
             }
         }
         view.displayEndScreen(players);

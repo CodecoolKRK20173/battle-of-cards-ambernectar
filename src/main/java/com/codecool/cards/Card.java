@@ -28,6 +28,10 @@ public class Card implements Comparable<Card> {
         createCardLines();
     }
 
+    public static int getCardWidth(){
+        return CARD_WIDTH;
+    }
+
     private void createCardLines() {
         this.cardLineList = new String[9];
         // Top line

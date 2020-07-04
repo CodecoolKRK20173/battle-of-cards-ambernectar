@@ -1,5 +1,6 @@
 package com.codecool.player;
 
+import com.codecool.app.AnimatedCard;
 import com.codecool.app.ComparisonOption;
 import com.codecool.cards.Card;
 import com.codecool.comparator.ComparatorIbu;
@@ -67,6 +68,7 @@ public class Players {
             case STYLE:
                 winner = findWinner(new ComparatorStyle(this.styleRates));
         }
+
         // One winner
         if (winner.size() == 1){
             moveCards(winner.get(0));
@@ -79,6 +81,26 @@ public class Players {
             }
         }
         iteratePlayers();
+    }
+
+    public List<AnimatedCard> getPlayingCards(ComparisonOption comparison) {
+        List<AnimatedCard> playingCards = new ArrayList<>();
+        for (Player player : playersList) {
+            playingCards.add(new AnimatedCard(player.getTopCard(), player.getOwnerName()));
+        }
+        findPlaces(playingCards, comparison);
+        return playingCards;
+    }
+
+    private void findPlaces(List<AnimatedCard> animatedCards, ComparisonOption comparison) {
+        Comparator comparator = ComparisonOption.getComparator(comparison, styleRates);
+        for (AnimatedCard animatedCard : animatedCards) {
+            for (AnimatedCard card : animatedCards) {
+                if (comparator.compare(animatedCard, card) == 1){
+                    animatedCard.incrementPlace();
+                }
+            }
+        }
     }
 
     public void setAllCards(List<Card> allCards) {

@@ -5,6 +5,7 @@ import com.codecool.player.Player;
 import com.codecool.player.Players;
 
 import java.util.List;
+import java.util.Map;
 
 public class View {
 
@@ -41,6 +42,12 @@ public class View {
         System.out.println();
     }
 
+    void printCard(Card card, int x, int y, String owner){
+        System.out.print("\033[" + y++ + ";" + x + "H");
+        System.out.print(owner);
+        printCard(card, x, y);
+    }
+
     void clear(){
         System.out.print("\033[H\033[2J");
     }
@@ -70,5 +77,20 @@ public class View {
             printLine(player.getOwnerName() + ": " + player.getCardList().size() + " cards");
         }
         printLine("Press enter to finish");
+    }
+
+    void displayAnimation(List<AnimatedCard> playingCards){
+        displayFrame(playingCards);
+        // TODO iterate and animate
+    }
+
+    void displayFrame(List<AnimatedCard> playingCards){
+        clear();
+        for (AnimatedCard playingCard : playingCards) {
+            printCard(playingCard.getCard(),
+                    playingCard.getX(),
+                    playingCard.getX(),
+                    playingCard.getOwner());
+        }
     }
 }

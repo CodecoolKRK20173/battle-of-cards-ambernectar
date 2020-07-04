@@ -52,21 +52,27 @@ public class GameController {
 //        int playerChoice = 0;
 
         if (playerChoice == 0) {
-            setupGame2Players();
+            setupGameNoOfPlayers(2);
         }   else if (playerChoice == 1) {
-            setupGame3Players();
+            setupGameNoOfPlayers(3);
         } else if (playerChoice == 2) {
-            setupGame3Players();
+            setupGameNoOfPlayers(4);
         }
     }
 
-    private void setupGame2Players() {
+    private void setupGameNoOfPlayers(int playersQty) {
         DAO dao = new DAOCsv();
 
         view.clear();
 
-        players.addPlayer(new Player("Player1"));
-        players.addPlayer(new Player("Player2"));
+        for (int i = 0; i < playersQty; i++){
+            StringBuilder playerNameBuider = new StringBuilder();
+            playerNameBuider.append("Player");
+            playerNameBuider.append(i);
+            players.addPlayer(new Player(playerNameBuider.toString()));
+        }
+//        players.addPlayer(new Player("Player1"));
+//        players.addPlayer(new Player("Player2"));
 
         try {
             players.setAllCards(dao.loadDatabase(databaseName));
@@ -105,26 +111,6 @@ public class GameController {
         cardList.remove(pickedCard);
 
         return pickedCard;
-    }
-
-    private void setupGame3Players(){
-        view.clear();
-
-        players.addPlayer(new Player("Player1"));
-        players.addPlayer(new Player("Player2"));
-        players.addPlayer(new Player("Player3"));
-
-//        players.addCard(new Card("Pierwsza Pomoc",10, 520, 42, new BeerStyle("Lager")), 0);
-//        players.addCard(new Card("Druga Pomoc",10, 510, 45, new BeerStyle("Lager")), 1);
-//        players.addCard(new Card("Trzecia Pomoc",10, 500, 43, new BeerStyle("Lager")), 2);
-//
-//        players.addCard(new Card("Żywiec IPA",30, 670, 67, new BeerStyle("IPA")), 0);
-//        players.addCard(new Card("Żywe IPA",32, 700, 70, new BeerStyle("IPA")), 1);
-//        players.addCard(new Card("Żywieckie IPA",29, 690, 60, new BeerStyle("IPA")), 2);
-//
-//        players.addCard(new Card("Guiness",32, 1000, 80, new BeerStyle("Stout", "Coffee")), 0);
-//        players.addCard(new Card("Guines",30, 800, 81, new BeerStyle("Stout", "Coffee")), 1);
-//        players.addCard(new Card("Guines",31, 700, 78, new BeerStyle("Stout", "Coffee")), 2);
     }
 
     private ComparisonOption getCompareChoice() {

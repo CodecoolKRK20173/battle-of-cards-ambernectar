@@ -17,7 +17,7 @@ public class Card implements Comparable<Card> {
     }
 
     private String[] cardLineList;
-    private final static int CARD_WIDTH = 20;
+    private final static int CARD_WIDTH = 25;
 
     public Card(String name, int ibu, int price, int percentage, BeerStyle style) {
         this.name = name;

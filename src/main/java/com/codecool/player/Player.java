@@ -43,7 +43,7 @@ public class Player {
         return cardList.get(0);
     }
 
-    public String getOption() {
+    public String getOption(Players players) {
         Scanner scan = new Scanner(System.in);
         String playerInput = scan.nextLine();
 //        scan2.close();

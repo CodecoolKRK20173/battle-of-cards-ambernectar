@@ -34,7 +34,7 @@ public class GameController {
         while (!players.isGameOver()){
             view.displayGameScreen(players);
             Player currentPlayer = players.getPlayersList().get(players.getCurrentPlayer());
-            ComparisonOption comparison = ComparisonOption.getOption(currentPlayer.getOption());
+            ComparisonOption comparison = ComparisonOption.getOption(currentPlayer.getOption(players));
 
 //            ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
 

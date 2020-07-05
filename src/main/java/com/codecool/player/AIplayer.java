@@ -18,12 +18,6 @@ public class AIplayer extends Player {
     public String getOption(Players players) {
         Random randomGenerator = new Random();
 
-//        List<String> options = new ArrayList<String>();
-//        options.add("a");
-//        options.add("s");
-//        options.add("d");
-//        options.add("f");
-
         Map<String, Double> allOptions = useCheatEngine(players);
         Map<String, Double> twoBestOptions = returnTwoGreatest(allOptions);
 
@@ -37,22 +31,15 @@ public class AIplayer extends Player {
         double[] values = players.useCheat();
         Map<String, Double> valuesList = new HashMap<String, Double>();
 
-        // " -1 to discard last element of array which store qty of all cards"
-       valuesList.put(options.get(0), values[0]);
-       valuesList.put(options.get(1), values[1]);
-       valuesList.put(options.get(2), values[2]);
-       valuesList.put(options.get(3), values[3]);
-
-//       try {
-//           for (int index = 0; index < values.length -1; index++) {
-//               valuesList.put(options.get(index), values[index]);
-//           }
-//       } catch (IndexOutOfBoundsException e ) {
-//           System.out.println("IndexOutOfBoundsException in AIPlayer");
-//           System.exit(0);
-//       };
-
-
+       try {
+           // " -1 to discard last element of array which store qty of all cards"
+           for (int index = 0; index < values.length -1; index++) {
+               valuesList.put(options.get(index), values[index]);
+           }
+       } catch (IndexOutOfBoundsException e ) {
+           System.out.println("IndexOutOfBoundsException in AIPlayer");
+           System.exit(0);
+       };
         return valuesList;
     }
 

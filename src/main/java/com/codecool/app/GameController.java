@@ -32,7 +32,11 @@ public class GameController {
         players.setupStyleRates();
         while (!players.isGameOver()){
             view.displayGameScreen(players);
-            ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
+            Player currentPlayer = players.getPlayersList().get(players.getCurrentPlayer());
+            ComparisonOption comparison = ComparisonOption.getOption(currentPlayer.getOption());
+
+//            ComparisonOption comparison = ComparisonOption.getOption(scan.nextLine());
+
             if (comparison == ComparisonOption.CHEAT){
                 view.displayCheatScreen(players);
                 scan.nextLine();

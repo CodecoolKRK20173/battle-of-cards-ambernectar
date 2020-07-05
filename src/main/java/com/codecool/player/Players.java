@@ -22,6 +22,11 @@ import java.util.*;
 public class Players {
     private final View view;
     private List<Player> playersList;
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     private int currentPlayer;
     private List<Card> allCards;
     private String databaseName;
@@ -78,7 +83,13 @@ public class Players {
 
         //Animation
         view.displayAnimation(getPlayingCards(ch));
-        scan.nextLine();
+        try {
+            scan.nextLine();
+        } catch (NoSuchElementException e) {
+            //TODO Error handling
+        }
+
+//        thread.slip
 
         // One winner
         if (winner.size() == 1){

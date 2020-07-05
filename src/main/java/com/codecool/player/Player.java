@@ -4,6 +4,8 @@ import com.codecool.cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Player {
     private List<Card> cardList;
@@ -39,5 +41,12 @@ public class Player {
 
     public Card getTopCard(){
         return cardList.get(0);
+    }
+
+    public String getOption() {
+        Scanner scan = new Scanner(System.in);
+        String playerInput = scan.nextLine();
+//        scan2.close();
+        return playerInput;
     }
 }

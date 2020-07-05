@@ -62,13 +62,13 @@ public class GameController {
         while (shouldRun) {
             int playerChoice = util.getChoice(optionsList, "Chose game mode");
 
-            if (playerChoice == 0) {
+            if (playerChoice == 2) {
                 setupGameNoOfPlayers(2);
                 shouldRun = false;
-            } else if (playerChoice == 1) {
+            } else if (playerChoice == 3) {
                 setupGameNoOfPlayers(3);
                 shouldRun = false;
-            } else if (playerChoice == 2) {
+            } else if (playerChoice == 4) {
                 setupGameNoOfPlayers(4);
                 shouldRun = false;
             }

@@ -51,7 +51,7 @@ public class GameController {
     }
 
     private void setupGame(){
-        view.printMessage("MENU:");
+//        view.printMessage("MENU:");
         List<String> optionsList = new ArrayList<>();
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
@@ -63,7 +63,7 @@ public class GameController {
         boolean withAi = false;
 
         while (shouldRun) {
-            int playerChoice = util.getChoice(optionsList, "Chose game mode");
+            int playerChoice = util.getChoice(optionsList,"\033[1;33m" + "\n\nChose game mode\n\n" + "\033[0m");
 
             if (playerChoice == 2) {
                 setupGameNoOfPlayers(2, withAi);

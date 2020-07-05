@@ -89,8 +89,6 @@ public class Players {
             //TODO Error handling
         }
 
-//        thread.slip
-
         // One winner
         if (winner.size() == 1){
             moveCards(winner.get(0));

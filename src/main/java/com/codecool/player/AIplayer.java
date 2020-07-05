@@ -8,10 +8,12 @@ public class AIplayer extends Player {
     public AIplayer(String ownerName) {
         super(ownerName);
     }
-    private Random randomGenerator;
+
 
     @Override
     public String getOption() {
+        Random randomGenerator = new Random();
+
         List<String> options = new ArrayList<String>();
         options.add("a");
         options.add("s");

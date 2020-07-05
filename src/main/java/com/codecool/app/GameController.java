@@ -3,6 +3,7 @@ package com.codecool.app;
 import com.codecool.cards.Card;
 import com.codecool.dao.DAO;
 import com.codecool.dao.DAOCsv;
+import com.codecool.player.AIplayer;
 import com.codecool.player.Player;
 import com.codecool.player.Players;
 
@@ -55,36 +56,55 @@ public class GameController {
         optionsList.add("Play 2 players game.");
         optionsList.add("Play 3 players game.");
         optionsList.add("Play 4 players game.");
+        optionsList.add("Play 2 players game with bot.");
 
 //        int playerChoice = 0;
         boolean shouldRun = true;
+        boolean withAi = false;
 
         while (shouldRun) {
             int playerChoice = util.getChoice(optionsList, "Chose game mode");
 
             if (playerChoice == 2) {
-                setupGameNoOfPlayers(2);
+                setupGameNoOfPlayers(2, withAi);
                 shouldRun = false;
             } else if (playerChoice == 3) {
-                setupGameNoOfPlayers(3);
+                setupGameNoOfPlayers(3, withAi);
                 shouldRun = false;
             } else if (playerChoice == 4) {
-                setupGameNoOfPlayers(4);
+                setupGameNoOfPlayers(4, withAi);
                 shouldRun = false;
+            } else if (playerChoice == 5) {
+                withAi = true;
+                setupGameNoOfPlayers(2, withAi);
+                shouldRun =false;
             }
         }
     }
 
-    private void setupGameNoOfPlayers(int playersQty) {
+    private void setupGameNoOfPlayers(int playersQty, boolean withAi) {
         DAO dao = new DAOCsv();
 
         view.clear();
 
-        for (int i = 0; i < playersQty; i++){
-            StringBuilder playerNameBuider = new StringBuilder();
-            playerNameBuider.append("Player");
-            playerNameBuider.append(i);
-            players.addPlayer(new Player(playerNameBuider.toString()));
+        if (!withAi) {
+            for (int i = 0; i < playersQty; i++){
+                StringBuilder playerNameBuider = new StringBuilder();
+                playerNameBuider.append("Player");
+                playerNameBuider.append(i + 1);
+                players.addPlayer(new Player(playerNameBuider.toString()));
+            }
+        } else {
+            for (int i = 0; i < playersQty; i++){
+                StringBuilder playerNameBuider = new StringBuilder();
+                playerNameBuider.append("Player");
+                playerNameBuider.append(i + 1);
+                if (i == 0) {
+                    players.addPlayer(new Player(playerNameBuider.toString()));
+                } else {
+                    players.addPlayer(new AIplayer(playerNameBuider.toString()));
+                }
+            }
         }
 
         try {

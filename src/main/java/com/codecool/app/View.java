@@ -76,9 +76,10 @@ public class View {
 
         double[] values = players.useCheat();
         printLine("With your current card percentage chance of winning are \n " +
-                "Ibu = " + Math.round(100 * values[0] / values[3])
-                + "%   Percentage = " + Math.round(100 * values[1] / values[3]) +
-                "%   Price = " + Math.round(100 * values[2] / values[3]) + "%");
+                "Ibu = " + Math.round(100 * values[0] / values[4])
+                + "%   Percentage = " + Math.round(100 * values[1] / values[4]) +
+                "%   Price = " + Math.round(100 * values[2] / values[4]) +
+                "%  Style = " + Math.round(100 * values[3] / values[4]) + "%");
     }
 
     public void displayAnimation(List<AnimatedCard> playingCards){

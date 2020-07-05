@@ -5,6 +5,7 @@ import com.codecool.player.Player;
 import com.codecool.player.Players;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class View {
     private static final long ANIMATION_PERIOD = 15;
@@ -16,6 +17,12 @@ public class View {
     }
 
     public void printOptions(List<String> optionsList, String message) {
+
+        String logo = "  _   _   _   _   _     _   _   _   _   _   _     _   _   _   _   _   _  \n" +
+                " / xx / xx / xx / xx / xx   / xx / xx / xx / xx / xx / xx   / xx / xx / xx / xx / xx / xx \n" +
+                "( A | m | b | e | r ) ( N | e | c | t | a | r ) ( B | a | t | t | l | e )\n" +
+                " xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/\n ";
+        System.out.print(logo.replaceAll("xx","\\\\"));
         printMessage(message);
         int changeIndex = 2;
         try {

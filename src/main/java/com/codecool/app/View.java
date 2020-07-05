@@ -18,16 +18,16 @@ public class View {
 
     public void printOptions(List<String> optionsList, String message) {
 
-        String logo = "  _   _   _   _   _     _   _   _   _   _   _     _   _   _   _   _   _  \n" +
+        String logo ="\u001B[33m" + "  _   _   _   _   _     _   _   _   _   _   _     _   _   _   _   _   _  \n" +
                 " / xx / xx / xx / xx / xx   / xx / xx / xx / xx / xx / xx   / xx / xx / xx / xx / xx / xx \n" +
                 "( A | m | b | e | r ) ( N | e | c | t | a | r ) ( B | a | t | t | l | e )\n" +
-                " xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/\n ";
+                " xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/   xx_/ xx_/ xx_/ xx_/ xx_/ xx_/\n " + "\u001B[0m" ;
         System.out.print(logo.replaceAll("xx","\\\\"));
         printMessage(message);
         int changeIndex = 2;
         try {
             for (int index = 0; index < optionsList.size(); index++) {
-                printMessage("(" + (index+changeIndex) + ") " + optionsList.get(index));
+                printMessage("\033[4;33m" + "(" + (index+changeIndex) + ") " + optionsList.get(index) + "\u001B[0m");
             }
         }catch (IndexOutOfBoundsException e) {
 //            TODO
@@ -56,25 +56,25 @@ public class View {
 
     void displayGameScreen(Players players){
         clear();
-        printLine("Current player: " + players.getCurrentPlayerName() + "\n");
+        printLine("\033[0;33m" + "Current player: " + players.getCurrentPlayerName() + "\n" + "\033[0m");
         printCard(players.getCurrentCard(), 4, 3);
-        printLine("a: IBU, s: Price, d: Percentage, f: Style, h: Cheats");
+        printLine( "\033[0;32m" + "a: IBU, s: Price, d: Percentage, f: Style, h: Cheats\n" + "\033[0m");
         for (Player player : players.getPlayersList()) {
-            System.out.print(player.getOwnerName() + ": " +
-                    player.getCardList().size() + "   ");
+            System.out.print("\033[0;96m" + player.getOwnerName() + ": " +
+                    player.getCardList().size() + "   " + "\033[0m");
         }
         System.out.println();
         if (players.getNumberOfDrawnCards() > 0){
-            System.out.println("Number of pooled cards: " + players.getNumberOfDrawnCards());
+            System.out.println("\033[0;96m" + "Number of pooled cards: " + players.getNumberOfDrawnCards() + "\033[0m");
         }
-        System.out.print("Your choice: ");
+        System.out.print("\nYour choice: ");
     }
 
     void displayEndScreen(Players players){
         clear();
-        printLine("The winner is " + players.getWinnerName());
+        printLine("\033[1;31m" + "The winner is " + players.getWinnerName() + "\033[0m" );
         for (Player player : players.getPlayersList()) {
-            printLine(player.getOwnerName() + ": " + player.getCardList().size() + " cards");
+            printLine("\033[1;31m" + player.getOwnerName() + ": " + player.getCardList().size() + " cards" + "\033[0m");
         }
         printLine("Press enter to finish");
     }
@@ -83,11 +83,12 @@ public class View {
     void displayCheatScreen(Players players) {
 
         double[] values = players.useCheat();
-        printLine("With your current card percentage chance of winning are \n " +
+        printLine("\n" + "\033[1;96m" + "With your current card percentage chance of winning are \n " +
                 "Ibu = " + Math.round(100 * values[0] / values[4])
                 + "%   Percentage = " + Math.round(100 * values[1] / values[4]) +
                 "%   Price = " + Math.round(100 * values[2] / values[4]) +
-                "%  Style = " + Math.round(100 * values[3] / values[4]) + "%");
+                "%  Style = " + Math.round(100 * values[3] / values[4]) + "%" + "\033[0m" +
+                "\n Press enter to close cheats information");
     }
 
     public void displayAnimation(List<AnimatedCard> playingCards){
